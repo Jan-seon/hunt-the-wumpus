@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HuntTheWumpus
 {
-    public partial class MainForm : Form
+    public partial class GameUI : Form
     {
-        public MainForm()
+        public GameUI()
         {
             InitializeComponent();
         }

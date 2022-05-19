@@ -1,7 +1,7 @@
 ﻿
 namespace HuntTheWumpus
 {
-    partial class MainForm
+    partial class GameUI
     {
         /// <summary>
         /// Required designer variable.
