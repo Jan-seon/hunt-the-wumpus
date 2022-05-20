@@ -14,7 +14,7 @@ namespace HuntTheWumpus.HighScore
         public DateTime dateTime { get; set; }
 
 
-        public Highscore(string n, int s, string cn, DateTime dt)
+        public HighScore(string n, int s, string cn, DateTime dt)
         {
             name = n;
             score = s;
