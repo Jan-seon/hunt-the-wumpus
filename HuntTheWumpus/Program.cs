@@ -16,7 +16,7 @@ namespace HuntTheWumpus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameUI());
+            Application.Run(new HomeScreen());
         }
     }
 }
