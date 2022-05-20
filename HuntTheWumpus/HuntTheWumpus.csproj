@@ -48,6 +48,18 @@
   <ItemGroup>
     <Compile Include="Cave\Cave.cs" />
     <Compile Include="Cave\Room.cs" />
+    <Compile Include="CreditsUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreditsUI.Designer.cs">
+      <DependentUpon>CreditsUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HighScoresUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HighScoresUI.Designer.cs">
+      <DependentUpon>HighScoresUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeScreen.cs">
       <SubType>Form</SubType>
     </Compile>
