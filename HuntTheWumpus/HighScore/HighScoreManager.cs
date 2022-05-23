@@ -18,23 +18,11 @@ namespace HuntTheWumpus.HighScore
         }
         public void Sort()
         {
-            List<HighScore> tempHighScores = HighScores;
-            List<HighScore> sortedHighScore = new List<HighScore>();
-            HighScore tempscore = new HighScore("", 0, "", new DateTime());
-            //loop through array
-            foreach(HighScore Score in tempHighScores)
+           HighScores = HighScores.OrderByDescending(x => x.score).ToList(); 
+           if(HighScores.Count > 10)
             {
-                if(Score.score > tempscore.score)
-                {
-                    tempscore = Score; 
-                }
+                HighScores.RemoveAt(10); 
             }
-            //compare tempHighScores.score to HighScores.score
-            //if tempHighscores.score > HighScores.Score THEN replace Highscores value
-
-            //do stuff
-
-            HighScores = sortedHighScore;
 
         }
         public List<HighScore> GetHighScores()
