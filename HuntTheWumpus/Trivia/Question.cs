@@ -25,9 +25,13 @@ namespace HuntTheWumpus.Trivia
             ans = Answer;
         }
 
-        public CheckAnswer(string guess)
+        public bool CheckAnswer(string guess)
         {
-        
+            if (guess == Answer)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

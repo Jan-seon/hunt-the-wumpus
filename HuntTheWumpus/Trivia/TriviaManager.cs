@@ -9,8 +9,7 @@ namespace HuntTheWumpus.Trivia
 {
     class TriviaManager
     {
-        // not sure if i did this right tbh
-        public List<Question> questions = new List<Question>();
+        public List<Question> Questions = new List<Question>();
 
         public TriviaManager()
         {
@@ -19,13 +18,21 @@ namespace HuntTheWumpus.Trivia
 
         public void ReadFile()
         {
-            // hopefully im doing this correctly
             using (StreamReader sr = new StreamReader("huntTheWumpusQuestions.txt"))
             {
                 while (!sr.EndOfStream)
                 {
-                    // Random rnd = new Random();
                     string question = sr.ReadLine();
+                    string[] data = question.Split(',');
+                    string tq = data[0];
+                    string a = data[1];
+                    string b = data[2];
+                    string c = data[3];
+                    string d = data[4];
+                    string ans = data[5];
+
+                    Question q = new Question(tq, a, b ,c, d, ans);
+                    Questions.Add(q);
                 }
             }
         }
