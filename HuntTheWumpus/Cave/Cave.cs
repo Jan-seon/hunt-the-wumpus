@@ -25,6 +25,14 @@ namespace HuntTheWumpus.Cave
                 for (int l = 0; l < 6; l++)
                 {
                     Room room = new Room((l + 1) + (i * 6));
+                    Rooms[i, l] = room;
+                }
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                for (int l = 0; l < 6; l++)
+                {
+                    Room room = Rooms[i, l];
                     room.GateWays = FindNeighbors(i, l);
                     Rooms[i, l] = room;
                 }
@@ -132,6 +140,5 @@ namespace HuntTheWumpus.Cave
                 return new Room[] { r1, r2, r3, r4, r5, r6 };
             }
         }
-
     }
 }
