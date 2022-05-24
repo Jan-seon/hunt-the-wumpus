@@ -9,7 +9,8 @@ namespace HuntTheWumpus.Cave
     class Room
     {
         public int RoomNumber { get; set; }
-        public Room[] GateWays { get; set; }
+        public Room[] Neighbors { get; set; }
+        public List<Room> GateWays = new List<Room>();
 
         //public List<Hazard> Hazards = new List<Hazard>();
 
