@@ -9,8 +9,8 @@ namespace HuntTheWumpus.GameLocations
 {
     class GameLocations
     {
-        public int BatLocation { get; set; }
-        public int PitLocation { get; set; }
+        public List<Cave.Room> BatLocations { get; set; }
+        public List<Cave.Room> PitLocations { get; set; }
         public int Bat1Location { get; set; }
         public int Bat2Location { get; set; }
         public int Pit1Location { get; set; }
@@ -21,33 +21,36 @@ namespace HuntTheWumpus.GameLocations
 
         Cave.Cave cave = new Cave.Cave();
         Random rndInt = new Random();
-        List<Cave.Room> pits = new List<Cave.Room>();
-        List<Cave.Room> bats = new List<Cave.Room>();
+        //List<Cave.Room> pits = new List<Cave.Room>();
+        //List<Cave.Room> bats = new List<Cave.Room>();
 
-        public GameLocations(int wumpus, int player, int pit, int bat)
+        public GameLocations()
         {
-
-            wumpus = WumpusLocation;
-            player = PlayerLocation;
-            pit = PitLocation;
-            bat = BatLocation;
+            RandomWumpus();
+            RandomBat();
+            RandomPit();
+            PlayerLocation = 1;
 
            
-    }
+           }
         public List<string> GiveWarning()
         {
             List<string> warnings = new List<string>();
-            if (PlayerLocation == WumpusLocation)
+            Cave.Room playerRoom = GetRoom(PlayerLocation);
+            foreach (Cave.Room room in playerRoom.GateWays)
             {
-                warnings.Add("I smell a wumpus!");
-            }
-            else if (PlayerLocation == Bat1Location || PlayerLocation == Bat2Location)
-            {
-                warnings.Add("Bats nearby!");
-            }
-            else if(PlayerLocation == Pit1Location || PlayerLocation == Pit2Location)
-            {
-                warnings.Add("I feel a draft!");
+                if (room == GetRoom(WumpusLocation))
+                {
+                    warnings.Add("I smell a wumpus!");
+                }
+                else if (room == GetRoom(Bat1Location) || room == GetRoom(Bat2Location))
+                {
+                    warnings.Add("Bats nearby!");
+                }
+                else if (room == GetRoom(Pit1Location) || room == GetRoom(Pit2Location))
+                {
+                    warnings.Add("I feel a draft!");
+                }
             }
             return warnings;
         }
@@ -59,29 +62,24 @@ namespace HuntTheWumpus.GameLocations
         }
         public void RandomBat()
         {
-            this.Bat1Location = rndInt.Next(30);
-            this.Bat2Location = rndInt.Next(30);
+            Bat1Location = rndInt.Next(30);
+            Bat2Location = rndInt.Next(30);
 
-            bats.Add(Bat1Location);
-            bats.Add(Bat2Location);
+            BatsLocation.Add(Bat1Location);
+            PitsLocation.Add(Bat2Location);
         }
         public void RandomPit()
         {
             
-            int room1, room2;
-            room1 = rndInt.Next(30);
-            room2 = rndInt.Next(30);
-            Pit1Location = room1;
-            Pit2Location = room2;
-
-            pits.Add(Pit1Location);
-            pits.Add(Pit2Location);
+            Pit1Location = rndInt.Next(30);
+            Pit2Location = rndInt.Next(30);
+            
+            PitsLocation.Add(Pit1Location);
+            PitsLocation.Add(Pit2Location);
         }
         public void RandomPlayer()
         {
-            PlayerLocation = 0;
-            int room = rndInt.Next(30);
-            PlayerLocation = room;
+            PlayerLocation = rndInt.Next(30);
         }
         public bool ShootArrow(int roomNumber)
         {
@@ -99,8 +97,36 @@ namespace HuntTheWumpus.GameLocations
         }
         public string GetHint()
         {
+            int hintOutput = rndInt.Next(4);
+            string hint;
+            Cave.Room playerRoom = GetRoom(PlayerLocation);
+            foreach (Cave.Room room in playerRoom.GateWays)
+            {
+                if (hintOutput == 0)
+                {
+                    //location of pit
+                    hint = "There is a pit in room " + Pit1Location.ToString();
+                }
+                else if (hintOutput == 1)
+                {
+                    hint = "There is a bat in room " + Bat1Location.ToString(); ;
+                }
+                else if (hintOutput == 2)
+                {
+                    hint = "The wumpus is within two rooms of your location.";
+                }
+                else (hintOutput == 3)
+            {
+                    hint = "The wumpus is in room " + WumpusLocation.ToString();
+                }
+            }
             return "";
         }
+        private Cave.Room GetRoom (int roomNumber)
+        {
+            return cave.Rooms[(roomNumber - 1) / 6, (roomNumber - 1) % 6]; 
+        }
+        
       
     }
 }
