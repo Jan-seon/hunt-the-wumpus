@@ -12,8 +12,13 @@ namespace HuntTheWumpus.HighScore
 
         public List<HighScore> HighScores { get; set; }
 
-        public void Add(HighScore highscore)
+        public void Add( string n, int s, string cn, DateTime dt)
         {
+            HighScore highscore = new HighScore(n, s, cn, dt);
+            HighScores.Add(highscore);
+            Sort(); 
+
+            
 
         }
         public void Sort()
