@@ -33,7 +33,7 @@ namespace HuntTheWumpus.Cave
                 for (int l = 0; l < 6; l++)
                 {
                     Room room = Rooms[i, l];
-                    room.GateWays = FindNeighbors(i, l);
+                    room.Neighbors = FindNeighbors(i, l);
                     Rooms[i, l] = room;
                 }
             }
@@ -138,6 +138,27 @@ namespace HuntTheWumpus.Cave
                 r6 = Rooms[GetRow(row, 1), index];
 
                 return new Room[] { r1, r2, r3, r4, r5, r6 };
+            }
+        }
+
+        public void GenerateLayout()
+        {
+            Random rnd = new Random();
+            foreach (Room room in Rooms)
+            {
+                List<Room> neighbors = new List<Room>();
+                foreach (Room rom in room.Neighbors)
+                {
+                    neighbors.Add(rom);
+                }
+                //Room[] tunnles;
+                int tunnlesLeft = 3;
+                for (int i = 0; i < tunnlesLeft; i++)
+                {
+                    int n = rnd.Next(0, neighbors.Count);
+                    room.GateWays.Add(neighbors[n]);
+                    neighbors.RemoveAt(n);
+                }
             }
         }
     }
