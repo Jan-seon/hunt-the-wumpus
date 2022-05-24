@@ -37,9 +37,18 @@ namespace HuntTheWumpus.Trivia
             }
         }
 
-        public void GetRandomQuestion(int num)
+        public List<Trivia.Question> GetRandomQuestion(int num)
         {
+            List<Trivia.Question> qList = new List<Trivia.Question>();
 
+            for (int i = 0; i < num; i++)
+            {
+                Random rnd = new Random();
+                int qNum = rnd.Next(0, 15);
+
+                qList.Add(Questions[qNum]);
+            }
+            return qList;
         }
     }
 }
