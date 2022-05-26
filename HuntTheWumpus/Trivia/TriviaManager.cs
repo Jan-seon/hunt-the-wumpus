@@ -7,13 +7,13 @@ using System.IO;
 
 namespace HuntTheWumpus.Trivia
 {
-    class TriviaManager
+    public class TriviaManager
     {
         public List<Question> Questions = new List<Question>();
 
         public TriviaManager()
         {
-
+            
         }
 
         public void ReadFile()
@@ -41,10 +41,12 @@ namespace HuntTheWumpus.Trivia
         {
             List<Trivia.Question> qList = new List<Trivia.Question>();
 
+            int placeholder = 15;
+
             for (int i = 0; i < num; i++)
             {
                 Random rnd = new Random();
-                int qNum = rnd.Next(0, 15);
+                int qNum = rnd.Next(0, placeholder);
 
                 qList.Add(Questions[qNum]);
             }
