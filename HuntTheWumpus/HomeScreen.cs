@@ -31,7 +31,7 @@ namespace HuntTheWumpus
             this.Hide();
 
             var highScoreUI = new HighScoresUI();
-            highScoreUI.FormClosed += (s, args) => this.Close();
+            highScoreUI.FormClosed += (s, args) => this.Show();
             highScoreUI.Show();
         }
 
@@ -40,7 +40,7 @@ namespace HuntTheWumpus
             this.Hide();
 
             var creditsUI = new CreditsUI();
-            creditsUI.FormClosed += (s, args) => this.Close();
+            creditsUI.FormClosed += (s, args) => this.Show();
             creditsUI.Show();
         }
 

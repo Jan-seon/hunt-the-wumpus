@@ -53,6 +53,7 @@ namespace HuntTheWumpus
             this.buttonBack.TabIndex = 1;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // richTextBoxHighScores
             // 
@@ -71,6 +72,7 @@ namespace HuntTheWumpus
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.labelTitle);
             this.Name = "HighScoresUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HighScoresUI";
             this.ResumeLayout(false);
             this.PerformLayout();
