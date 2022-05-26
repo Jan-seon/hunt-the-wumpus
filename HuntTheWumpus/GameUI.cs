@@ -26,12 +26,19 @@ namespace HuntTheWumpus
 
         private void move(object sender, EventArgs e)
         {
-            // update player location
-            // update player turns
-            
-            // check for hazards
+            if (shooting)
+            {
 
-            // check for warnings
+            }
+            else
+            {
+                // update player location
+                // update player turns
+
+                // check for hazards
+
+                // check for warnings
+            }
         }
 
         private void shootArrow(object sender, EventArgs e)
@@ -44,6 +51,8 @@ namespace HuntTheWumpus
 
         private void purchaseArrow(object sender, EventArgs e)
         {
+            List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
+            
             // player.PurchaseArrows();
 
             updateUI();
