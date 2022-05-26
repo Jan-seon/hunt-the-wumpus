@@ -13,7 +13,7 @@ namespace HuntTheWumpus.Trivia
 
         public TriviaManager()
         {
-            
+            ReadFile();
         }
 
         public void ReadFile()
