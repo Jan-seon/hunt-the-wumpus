@@ -21,8 +21,6 @@ namespace HuntTheWumpus.GameLocations
 
         Cave.Cave cave = new Cave.Cave();
         Random rndInt = new Random();
-        //List<Cave.Room> pits = new List<Cave.Room>();
-        //List<Cave.Room> bats = new List<Cave.Room>();
 
         public GameLocations()
         {
@@ -65,8 +63,8 @@ namespace HuntTheWumpus.GameLocations
             Bat1Location = rndInt.Next(30);
             Bat2Location = rndInt.Next(30);
 
-            BatsLocation.Add(Bat1Location);
-            PitsLocation.Add(Bat2Location);
+            BatLocations.Add(GetRoom(Bat1Location));
+            PitLocations.Add(GetRoom(Bat2Location));
         }
         public void RandomPit()
         {
@@ -74,8 +72,8 @@ namespace HuntTheWumpus.GameLocations
             Pit1Location = rndInt.Next(30);
             Pit2Location = rndInt.Next(30);
             
-            PitsLocation.Add(Pit1Location);
-            PitsLocation.Add(Pit2Location);
+            PitLocations.Add(GetRoom(Pit1Location));
+            PitLocations.Add(GetRoom(Pit2Location));
         }
         public void RandomPlayer()
         {
@@ -97,27 +95,34 @@ namespace HuntTheWumpus.GameLocations
         }
         public string GetHint()
         {
-            int hintOutput = rndInt.Next(4);
             string hint;
             Cave.Room playerRoom = GetRoom(PlayerLocation);
             foreach (Cave.Room room in playerRoom.GateWays)
             {
-                if (hintOutput == 0)
+                if (room == GetRoom(WumpusLocation))
                 {
-                    //location of pit
-                    hint = "There is a pit in room " + Pit1Location.ToString();
+                        hint = "The wumpus is within two rooms of your location.";
+                        return hint;
                 }
-                else if (hintOutput == 1)
+                else
                 {
-                    hint = "There is a bat in room " + Bat1Location.ToString(); ;
-                }
-                else if (hintOutput == 2)
-                {
-                    hint = "The wumpus is within two rooms of your location.";
-                }
-                else (hintOutput == 3)
-            {
-                    hint = "The wumpus is in room " + WumpusLocation.ToString();
+                    int hintOutput = rndInt.Next(3);
+
+                    if (hintOutput == 0)
+                    {
+                        hint = "There is a pit in room " + GetRoom(Pit1Location).ToString();
+                        return hint;
+                    }
+                    else if (hintOutput == 1)
+                    {
+                        hint = "There is a bat in room " + GetRoom(Bat1Location).ToString();
+                        return hint;
+                    }
+                    else
+                    {
+                        hint = "The wumpus is in room " + GetRoom(WumpusLocation).ToString();
+                        return hint;
+                    }
                 }
             }
             return "";
