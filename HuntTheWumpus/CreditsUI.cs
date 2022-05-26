@@ -16,5 +16,10 @@ namespace HuntTheWumpus
         {
             InitializeComponent();
         }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

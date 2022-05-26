@@ -12,7 +12,6 @@ namespace HuntTheWumpus
 {
     public partial class GameUI : Form
     {
-        private Cave.Cave cave = new Cave.Cave();
         private GameLocations.GameLocations gameLocations = new GameLocations.GameLocations(0, 0, 0, 0);
         private HighScore.HighScoreManager highScoreManager = new HighScore.HighScoreManager();
         private Player.Player player = new Player.Player();
@@ -25,36 +24,54 @@ namespace HuntTheWumpus
             InitializeComponent();
         }
 
+        private void move(object sender, EventArgs e)
+        {
+            // update player location
+            // update player turns
+            
+            // check for hazards
+
+            // check for warnings
+        }
+
         private void shootArrow(object sender, EventArgs e)
         {
             shooting = !shooting;
+            enableUI(!shooting);
 
-            if (shooting)
-            {
-                enableUI(false);
-            }
-            else
-            {
-                enableUI(true);
-            }
+            updateUI();
         }
 
         private void purchaseArrow(object sender, EventArgs e)
         {
-            // player purchaseArrow
+            // player.PurchaseArrows();
+
+            updateUI();
         }
 
         private void purchaseSecret(object sender, EventArgs e)
         {
-            // player purchaseSecret
+            // player.PurchaseSecret();
             string hint = gameLocations.GetHint();
+            richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
 
+            updateUI();
         }
 
         private void enableUI(bool enable)
         {
             buttonPurchaseArrows.Enabled = enable;
-            buttonPurchaseArrows.Enabled = enable;
+            buttonPurchaseSecret.Enabled = enable;
+        }
+
+        private void updateUI()
+        {
+            // labelCoins.Text = player.Coins;
+            // labelArrows.Text = player.Arrows;
+            // labelScore.Text = player.CalculateSocre;
+            
+            // get gateways
+            // update labels
         }
     }
 }
