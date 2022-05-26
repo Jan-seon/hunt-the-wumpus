@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HuntTheWumpus.Trivia
 {
-    class Question
+    public class Question
     {
         public string TriviaQuestion { get; set; }
         public string OptionA { get; set; }
