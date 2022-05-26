@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using HuntTheWumpus.HighScore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace HighScoreUnitTest
@@ -11,14 +12,20 @@ namespace HighScoreUnitTest
         {
             HighScoreManager highscoreManager = new HighScoreManager();
 
-            Assert.IsNotNull(highscoreManager.Add("testNmae", 100, -1, DateTime.Now));
+            DateTime dt = DateTime.Now;
+
+            highscoreManager.Add("testNmae", 100, "", dt);
+
+            HighScore highscore = new HighScore("testNmae", 100, "", dt);
+
+            Assert.AreEqual(highscore, highscoreManager.GetHighScore("testNmae"));
         }
 
         [TestMethod]
         public void AddNotCorrect()
         {
             HighScoreManager highscoreManager = new HighScoreManager();
-            Assert.IsNotNull(highscoreManager.Add("", null, null, DateTime.Now));
+           // Assert.Fail((highscoreManager.Add("", 1, null, DateTime.Now));
         }
         [TestMethod]
         public void SortCorrect()

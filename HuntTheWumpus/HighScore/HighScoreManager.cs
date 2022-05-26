@@ -7,7 +7,7 @@ using System.IO;
 
 namespace HuntTheWumpus.HighScore
 {
-    class HighScoreManager
+    public class HighScoreManager
     {
 
         public List<HighScore> HighScores { get; set; }
@@ -30,6 +30,18 @@ namespace HuntTheWumpus.HighScore
             }
 
         }
+
+        public HighScore GetHighScore(string name)
+        {
+            foreach(HighScore highscore in HighScores)
+            {
+                if (highscore.name == name)
+                    return highscore;
+            }
+
+            return null;
+        }
+
         public List<HighScore> GetHighScores()
         {
             return HighScores;
