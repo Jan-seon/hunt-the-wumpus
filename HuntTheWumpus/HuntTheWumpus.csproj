@@ -80,8 +80,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trivia\Question.cs" />
     <Compile Include="Trivia\TriviaManager.cs" />
+    <EmbeddedResource Include="CreditsUI.resx">
+      <DependentUpon>CreditsUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameUI.resx">
       <DependentUpon>GameUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighScoresUI.resx">
+      <DependentUpon>HighScoresUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeScreen.resx">
       <DependentUpon>HomeScreen.cs</DependentUpon>
