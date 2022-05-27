@@ -10,6 +10,7 @@ namespace TriviaUnitTest
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
