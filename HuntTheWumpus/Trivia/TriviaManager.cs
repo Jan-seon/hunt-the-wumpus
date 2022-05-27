@@ -41,12 +41,10 @@ namespace HuntTheWumpus.Trivia
         {
             List<Trivia.Question> qList = new List<Trivia.Question>();
 
-            int placeholder = 15;
-
             for (int i = 0; i < num; i++)
             {
                 Random rnd = new Random();
-                int qNum = rnd.Next(0, placeholder);
+                int qNum = rnd.Next(0, (Questions.Count - 1));
 
                 qList.Add(Questions[qNum]);
             }
