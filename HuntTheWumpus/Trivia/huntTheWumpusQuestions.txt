@@ -1,5 +1,0 @@
-﻿question, right, wrong, incorrect, no, right
-question2, wrong, right, incorrect, no, right
-question3, wrong, incorrect, right, no, right
-question4, wrong, incorrect, no, right, right
-question5, idk, lol, fdswe, !!!, lol
