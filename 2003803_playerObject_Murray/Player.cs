@@ -28,13 +28,13 @@ namespace _2003803_playerObject_Murray
             Arrows = Arrows--;
         }
 
-        public void BuyArrows()
+        public void PurchaceArrows()
         {
             Arrows = Arrows + 2;
             Coins = Coins--;
         }
 
-        public void BuySecrets()
+        public void PurchaceSecrets()
         {
            Coins = Coins--;
         }

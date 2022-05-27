@@ -73,7 +73,7 @@ namespace HuntTheWumpus
             this.Controls.Add(this.labelTitle);
             this.Name = "HighScoresUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HighScoresUI";
+            this.Text = "Hunt the Wumpus";
             this.ResumeLayout(false);
             this.PerformLayout();
 
