@@ -207,7 +207,7 @@ namespace HuntTheWumpus
             this.Controls.Add(this.labelTitle);
             this.Name = "CreditsUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreditsUI";
+            this.Text = "Hunt the Wumpus";
             this.ResumeLayout(false);
             this.PerformLayout();
 
