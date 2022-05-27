@@ -33,7 +33,7 @@ namespace HuntTheWumpus
             else
             {
                 // update player location
-                // update player turns
+                player.Move();
 
                 // check for hazards
 
@@ -47,20 +47,22 @@ namespace HuntTheWumpus
             enableUI(!shooting);
 
             updateUI();
+
+            player.ShotArrow();
         }
 
         private void purchaseArrow(object sender, EventArgs e)
         {
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
             
-            // player.PurchaseArrows();
+            player.PurchaseArrows();
 
             updateUI();
         }
 
         private void purchaseSecret(object sender, EventArgs e)
         {
-            // player.PurchaseSecret();
+            player.PurchaseSecret();
             string hint = gameLocations.GetHint();
             richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
 
@@ -75,9 +77,9 @@ namespace HuntTheWumpus
 
         private void updateUI()
         {
-            // labelCoins.Text = player.Coins;
-            // labelArrows.Text = player.Arrows;
-            // labelScore.Text = player.CalculateSocre;
+            labelCoins.Text = player.Coins.ToString();
+            labelArrows.Text = player.Arrows.ToString();
+            //labelScore.Text = player.CalculateScore().ToString();
             
             // get gateways
             // update labels
