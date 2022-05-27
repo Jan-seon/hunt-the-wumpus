@@ -33,7 +33,7 @@ namespace HuntTheWumpus
             else
             {
                 // update player location
-                player.Move();
+                // update player turns
 
                 // check for hazards
 
@@ -47,25 +47,39 @@ namespace HuntTheWumpus
             enableUI(!shooting);
 
             updateUI();
-
-            player.ShotArrow();
         }
 
         private void purchaseArrow(object sender, EventArgs e)
         {
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
-            
-            player.PurchaseArrows();
 
+            TriviaUI triviaUI = new TriviaUI(questions);
+            triviaUI.ShowDialog();
+
+            if (triviaUI.CorrectAnswers >= 2)
+            {
+                // player.PurchaseArrows();
+            }
+
+            triviaUI.Close();
             updateUI();
         }
 
         private void purchaseSecret(object sender, EventArgs e)
         {
-            player.PurchaseSecret();
-            string hint = gameLocations.GetHint();
-            richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
+            List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
+            TriviaUI triviaUI = new TriviaUI(questions);
+            triviaUI.ShowDialog();
+
+            if (triviaUI.CorrectAnswers >= 2)
+            {
+                // player.PurchaseSecret();
+                string hint = gameLocations.GetHint();
+                richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
+            }
+
+            triviaUI.Close();
             updateUI();
         }
 
@@ -79,10 +93,13 @@ namespace HuntTheWumpus
         {
             labelCoins.Text = player.Coins.ToString();
             labelArrows.Text = player.Arrows.ToString();
-            //labelScore.Text = player.CalculateScore().ToString();
-            
-            // get gateways
-            // update labels
+            labelScore.Text = player.CalculateScore(false).ToString();
+
+            Cave.Room room = gameLocations.GetRoom(gameLocations.PlayerLocation);
+            Cave.Room[] neighbors = room.Neighbors;
+            List<Cave.Room> gateways = room.GateWays;
+
+            //buttonMove1.Text = neighbors
         }
     }
 }

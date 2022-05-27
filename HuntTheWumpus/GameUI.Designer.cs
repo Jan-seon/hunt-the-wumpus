@@ -37,7 +37,7 @@ namespace HuntTheWumpus
             this.buttonMove6 = new System.Windows.Forms.Button();
             this.labelCurrentRoom = new System.Windows.Forms.Label();
             this.groupBoxPlayerInformation = new System.Windows.Forms.GroupBox();
-            this.labelScores = new System.Windows.Forms.Label();
+            this.labelScore = new System.Windows.Forms.Label();
             this.labelArrows = new System.Windows.Forms.Label();
             this.labelCoins = new System.Windows.Forms.Label();
             this.labelScoresText = new System.Windows.Forms.Label();
@@ -135,7 +135,7 @@ namespace HuntTheWumpus
             // 
             // groupBoxPlayerInformation
             // 
-            this.groupBoxPlayerInformation.Controls.Add(this.labelScores);
+            this.groupBoxPlayerInformation.Controls.Add(this.labelScore);
             this.groupBoxPlayerInformation.Controls.Add(this.labelArrows);
             this.groupBoxPlayerInformation.Controls.Add(this.labelCoins);
             this.groupBoxPlayerInformation.Controls.Add(this.labelScoresText);
@@ -149,15 +149,15 @@ namespace HuntTheWumpus
             this.groupBoxPlayerInformation.TabStop = false;
             this.groupBoxPlayerInformation.Text = "Player Information";
             // 
-            // labelScores
+            // labelScore
             // 
-            this.labelScores.AutoSize = true;
-            this.labelScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelScores.Location = new System.Drawing.Point(152, 115);
-            this.labelScores.Name = "labelScores";
-            this.labelScores.Size = new System.Drawing.Size(19, 20);
-            this.labelScores.TabIndex = 5;
-            this.labelScores.Text = "0";
+            this.labelScore.AutoSize = true;
+            this.labelScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScore.Location = new System.Drawing.Point(152, 115);
+            this.labelScore.Name = "labelScore";
+            this.labelScore.Size = new System.Drawing.Size(19, 20);
+            this.labelScore.TabIndex = 5;
+            this.labelScore.Text = "0";
             // 
             // labelArrows
             // 
@@ -340,7 +340,7 @@ namespace HuntTheWumpus
         private System.Windows.Forms.Label labelArrowsText;
         private System.Windows.Forms.Label labelCoinsText;
         private System.Windows.Forms.Label labelCoins;
-        private System.Windows.Forms.Label labelScores;
+        private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Label labelArrows;
         private System.Windows.Forms.GroupBox groupBoxActions;
         private System.Windows.Forms.Button buttonPurchaseSecret;
