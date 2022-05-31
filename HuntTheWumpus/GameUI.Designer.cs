@@ -50,7 +50,7 @@ namespace HuntTheWumpus
             this.groupBoxHints = new System.Windows.Forms.GroupBox();
             this.richTextBoxHints = new System.Windows.Forms.RichTextBox();
             this.groupBoxWarnings = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxWarnings = new System.Windows.Forms.RichTextBox();
             this.groupBoxPlayerInformation.SuspendLayout();
             this.groupBoxActions.SuspendLayout();
             this.groupBoxHints.SuspendLayout();
@@ -67,6 +67,7 @@ namespace HuntTheWumpus
             this.buttonMove1.TabStop = false;
             this.buttonMove1.Text = "##";
             this.buttonMove1.UseVisualStyleBackColor = true;
+            this.buttonMove1.Click += new System.EventHandler(this.move);
             // 
             // buttonMove2
             // 
@@ -78,6 +79,7 @@ namespace HuntTheWumpus
             this.buttonMove2.TabStop = false;
             this.buttonMove2.Text = "##";
             this.buttonMove2.UseVisualStyleBackColor = true;
+            this.buttonMove2.Click += new System.EventHandler(this.move);
             // 
             // buttonMove3
             // 
@@ -89,6 +91,7 @@ namespace HuntTheWumpus
             this.buttonMove3.TabStop = false;
             this.buttonMove3.Text = "##";
             this.buttonMove3.UseVisualStyleBackColor = true;
+            this.buttonMove3.Click += new System.EventHandler(this.move);
             // 
             // buttonMove4
             // 
@@ -100,6 +103,7 @@ namespace HuntTheWumpus
             this.buttonMove4.TabStop = false;
             this.buttonMove4.Text = "##";
             this.buttonMove4.UseVisualStyleBackColor = true;
+            this.buttonMove4.Click += new System.EventHandler(this.move);
             // 
             // buttonMove5
             // 
@@ -111,6 +115,7 @@ namespace HuntTheWumpus
             this.buttonMove5.TabStop = false;
             this.buttonMove5.Text = "##";
             this.buttonMove5.UseVisualStyleBackColor = true;
+            this.buttonMove5.Click += new System.EventHandler(this.move);
             // 
             // buttonMove6
             // 
@@ -122,6 +127,7 @@ namespace HuntTheWumpus
             this.buttonMove6.TabStop = false;
             this.buttonMove6.Text = "##";
             this.buttonMove6.UseVisualStyleBackColor = true;
+            this.buttonMove6.Click += new System.EventHandler(this.move);
             // 
             // labelCurrentRoom
             // 
@@ -280,7 +286,7 @@ namespace HuntTheWumpus
             // 
             // groupBoxWarnings
             // 
-            this.groupBoxWarnings.Controls.Add(this.richTextBox1);
+            this.groupBoxWarnings.Controls.Add(this.richTextBoxWarnings);
             this.groupBoxWarnings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxWarnings.Location = new System.Drawing.Point(81, 520);
             this.groupBoxWarnings.Name = "groupBoxWarnings";
@@ -289,14 +295,14 @@ namespace HuntTheWumpus
             this.groupBoxWarnings.TabStop = false;
             this.groupBoxWarnings.Text = "Warnings";
             // 
-            // richTextBox1
+            // richTextBoxWarnings
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(7, 30);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(237, 114);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBoxWarnings.Location = new System.Drawing.Point(7, 30);
+            this.richTextBoxWarnings.Name = "richTextBoxWarnings";
+            this.richTextBoxWarnings.ReadOnly = true;
+            this.richTextBoxWarnings.Size = new System.Drawing.Size(237, 114);
+            this.richTextBoxWarnings.TabIndex = 0;
+            this.richTextBoxWarnings.Text = "";
             // 
             // GameUI
             // 
@@ -349,7 +355,7 @@ namespace HuntTheWumpus
         private System.Windows.Forms.GroupBox groupBoxHints;
         private System.Windows.Forms.RichTextBox richTextBoxHints;
         private System.Windows.Forms.GroupBox groupBoxWarnings;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxWarnings;
     }
 }
 

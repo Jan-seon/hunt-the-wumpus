@@ -22,5 +22,15 @@ namespace HuntTheWumpus.HighScore
             dateTime = dt;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is HighScore hs)
+            {
+                return name == hs.name && score == hs.score && caveName == hs.caveName && dateTime == hs.dateTime; 
+            }
+            else 
+                return false;
+        }
+
     }
 }

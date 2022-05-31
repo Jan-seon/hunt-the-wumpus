@@ -17,8 +17,7 @@ namespace HuntTheWumpus
         private int currentNumber;
         private int totalQuestions;
 
-        private int correctAnswers;
-        private int incorrectAnswers;
+        public int CorrectAnswers { get; set; }
 
         public TriviaUI(List<Trivia.Question> questionList)
         {
@@ -48,11 +47,7 @@ namespace HuntTheWumpus
 
             if (isCorrect)
             {
-                correctAnswers++;
-            }
-            else
-            {
-                incorrectAnswers++;
+                CorrectAnswers++;
             }
 
             if (currentNumber == totalQuestions)
