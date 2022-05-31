@@ -14,11 +14,11 @@ namespace HighScoreUnitTest
 
             DateTime dt = DateTime.Now;
 
-            highscoreManager.Add("testNmae", 100, "", dt);
+            highscoreManager.Add("testName", 100, "", dt);
 
-            HighScore highscore = new HighScore("testNmae", 100, "", dt);
+            HighScore highscore = new HighScore("testName", 100, "", dt);
 
-            Assert.AreEqual(highscore, highscoreManager.GetHighScore("testNmae"));
+            Assert.AreEqual(highscore, highscoreManager.GetHighScore(dt));
         }
 
         [TestMethod]
