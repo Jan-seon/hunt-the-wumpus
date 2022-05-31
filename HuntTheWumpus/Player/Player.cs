@@ -45,6 +45,7 @@ namespace HuntTheWumpus.Player
         public void Move()
         {
             Turns++;
+            Coins++;
         }
     }
 }
