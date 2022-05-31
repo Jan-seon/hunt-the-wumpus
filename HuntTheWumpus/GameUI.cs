@@ -22,6 +22,7 @@ namespace HuntTheWumpus
         public GameUI()
         {
             InitializeComponent();
+            updateUI();
         }
 
         private void move(object sender, EventArgs e)
@@ -32,12 +33,18 @@ namespace HuntTheWumpus
             }
             else
             {
-                // update player location
-                // update player turns
+                gameLocations.PlayerLocation = int.Parse(((Button)sender).Text);
+                player.Move();
 
-                // check for hazards
+                List<string> warnings = gameLocations.GiveWarning();
 
-                // check for warnings
+                richTextBoxWarnings.Text = "";
+                foreach(string warning in warnings)
+                {
+                    richTextBoxWarnings.Text = $"{richTextBoxWarnings.Text}{warning}\n";
+                }
+
+                updateUI();
             }
         }
 
@@ -58,7 +65,7 @@ namespace HuntTheWumpus
 
             if (triviaUI.CorrectAnswers >= 2)
             {
-                // player.PurchaseArrows();
+                player.PurchaseArrows();
             }
 
             triviaUI.Close();
@@ -74,7 +81,7 @@ namespace HuntTheWumpus
 
             if (triviaUI.CorrectAnswers >= 2)
             {
-                // player.PurchaseSecret();
+                player.PurchaseSecret();
                 string hint = gameLocations.GetHint();
                 richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
             }
@@ -99,7 +106,31 @@ namespace HuntTheWumpus
             Cave.Room[] neighbors = room.Neighbors;
             List<Cave.Room> gateways = room.GateWays;
 
-            //buttonMove1.Text = neighbors
+            List<int> gatewaysNumbers = new List<int>();
+            foreach(Cave.Room gateway in gateways)
+                gatewaysNumbers.Add(gateway.RoomNumber);
+
+            labelCurrentRoom.Text = room.RoomNumber.ToString();
+
+            buttonMove1.Text = neighbors[0].RoomNumber.ToString();
+            buttonMove2.Text = neighbors[1].RoomNumber.ToString();
+            buttonMove3.Text = neighbors[2].RoomNumber.ToString();
+            buttonMove4.Text = neighbors[3].RoomNumber.ToString();
+            buttonMove5.Text = neighbors[4].RoomNumber.ToString();
+            buttonMove6.Text = neighbors[5].RoomNumber.ToString();
+
+            /*            if (gatewaysNumbers.Contains(neighbors[0].RoomNumber))
+                            buttonMove1.Text = neighbors[0].RoomNumber.ToString();
+                        if (gatewaysNumbers.Contains(neighbors[1].RoomNumber))
+                            buttonMove2.Text = neighbors[1].RoomNumber.ToString();
+                        if (gatewaysNumbers.Contains(neighbors[2].RoomNumber))
+                            buttonMove3.Text = neighbors[2].RoomNumber.ToString();
+                        if (gatewaysNumbers.Contains(neighbors[3].RoomNumber))
+                            buttonMove4.Text = neighbors[3].RoomNumber.ToString();
+                        if (gatewaysNumbers.Contains(neighbors[4].RoomNumber))
+                            buttonMove5.Text = neighbors[4].RoomNumber.ToString();
+                        if (gatewaysNumbers.Contains(neighbors[5].RoomNumber))
+                            buttonMove6.Text = neighbors[5].RoomNumber.ToString();*/
         }
     }
 }
