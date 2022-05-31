@@ -33,7 +33,7 @@ namespace HuntTheWumpus
             else
             {
                 // update player location
-                // update player turns
+                player.Move();
 
                 // check for hazards
 
@@ -58,7 +58,7 @@ namespace HuntTheWumpus
 
             if (triviaUI.CorrectAnswers >= 2)
             {
-                // player.PurchaseArrows();
+                player.PurchaseArrows();
             }
 
             triviaUI.Close();
@@ -74,7 +74,7 @@ namespace HuntTheWumpus
 
             if (triviaUI.CorrectAnswers >= 2)
             {
-                // player.PurchaseSecret();
+                player.PurchaseSecret();
                 string hint = gameLocations.GetHint();
                 richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
             }
