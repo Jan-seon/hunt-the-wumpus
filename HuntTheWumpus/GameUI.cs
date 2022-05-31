@@ -12,7 +12,7 @@ namespace HuntTheWumpus
 {
     public partial class GameUI : Form
     {
-        private GameLocations.GameLocations gameLocations = new GameLocations.GameLocations(0, 0, 0, 0);
+        private GameLocations.GameLocations gameLocations = new GameLocations.GameLocations();
         private HighScore.HighScoreManager highScoreManager = new HighScore.HighScoreManager();
         private Player.Player player = new Player.Player();
         private Trivia.TriviaManager triviaManager = new Trivia.TriviaManager();
@@ -26,12 +26,19 @@ namespace HuntTheWumpus
 
         private void move(object sender, EventArgs e)
         {
-            // update player location
-            // update player turns
-            
-            // check for hazards
+            if (shooting)
+            {
 
-            // check for warnings
+            }
+            else
+            {
+                // update player location
+                // update player turns
+
+                // check for hazards
+
+                // check for warnings
+            }
         }
 
         private void shootArrow(object sender, EventArgs e)
@@ -44,17 +51,35 @@ namespace HuntTheWumpus
 
         private void purchaseArrow(object sender, EventArgs e)
         {
-            // player.PurchaseArrows();
+            List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
+            TriviaUI triviaUI = new TriviaUI(questions);
+            triviaUI.ShowDialog();
+
+            if (triviaUI.CorrectAnswers >= 2)
+            {
+                // player.PurchaseArrows();
+            }
+
+            triviaUI.Close();
             updateUI();
         }
 
         private void purchaseSecret(object sender, EventArgs e)
         {
-            // player.PurchaseSecret();
-            string hint = gameLocations.GetHint();
-            richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
+            List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
+            TriviaUI triviaUI = new TriviaUI(questions);
+            triviaUI.ShowDialog();
+
+            if (triviaUI.CorrectAnswers >= 2)
+            {
+                // player.PurchaseSecret();
+                string hint = gameLocations.GetHint();
+                richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
+            }
+
+            triviaUI.Close();
             updateUI();
         }
 
@@ -66,12 +91,15 @@ namespace HuntTheWumpus
 
         private void updateUI()
         {
-            // labelCoins.Text = player.Coins;
-            // labelArrows.Text = player.Arrows;
-            // labelScore.Text = player.CalculateSocre;
-            
-            // get gateways
-            // update labels
+            labelCoins.Text = player.Coins.ToString();
+            labelArrows.Text = player.Arrows.ToString();
+            labelScore.Text = player.CalculateScore(false).ToString();
+
+            Cave.Room room = gameLocations.GetRoom(gameLocations.PlayerLocation);
+            Cave.Room[] neighbors = room.Neighbors;
+            List<Cave.Room> gateways = room.GateWays;
+
+            //buttonMove1.Text = neighbors
         }
     }
 }

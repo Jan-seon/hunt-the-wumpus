@@ -1,0 +1,126 @@
+﻿
+namespace HuntTheWumpus.GameLocations
+{
+    partial class TriviaUI
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.labelQuestionNumber = new System.Windows.Forms.Label();
+            this.labelQuestion = new System.Windows.Forms.Label();
+            this.buttonA = new System.Windows.Forms.Button();
+            this.buttonB = new System.Windows.Forms.Button();
+            this.buttonC = new System.Windows.Forms.Button();
+            this.buttonD = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // labelQuestionNumber
+            // 
+            this.labelQuestionNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuestionNumber.Location = new System.Drawing.Point(241, 9);
+            this.labelQuestionNumber.Name = "labelQuestionNumber";
+            this.labelQuestionNumber.Size = new System.Drawing.Size(250, 50);
+            this.labelQuestionNumber.TabIndex = 0;
+            this.labelQuestionNumber.Text = "Question: # of #";
+            this.labelQuestionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelQuestion
+            // 
+            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuestion.Location = new System.Drawing.Point(12, 59);
+            this.labelQuestion.Name = "labelQuestion";
+            this.labelQuestion.Size = new System.Drawing.Size(708, 100);
+            this.labelQuestion.TabIndex = 1;
+            this.labelQuestion.Text = "[Question]\r\n[Question]\r\n[Question]";
+            this.labelQuestion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // buttonA
+            // 
+            this.buttonA.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonA.Location = new System.Drawing.Point(18, 188);
+            this.buttonA.Name = "buttonA";
+            this.buttonA.Size = new System.Drawing.Size(702, 44);
+            this.buttonA.TabIndex = 2;
+            this.buttonA.Text = "[Option A]";
+            this.buttonA.UseVisualStyleBackColor = true;
+            // 
+            // buttonB
+            // 
+            this.buttonB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonB.Location = new System.Drawing.Point(18, 238);
+            this.buttonB.Name = "buttonB";
+            this.buttonB.Size = new System.Drawing.Size(702, 44);
+            this.buttonB.TabIndex = 3;
+            this.buttonB.Text = "[Option B]";
+            this.buttonB.UseVisualStyleBackColor = true;
+            // 
+            // buttonC
+            // 
+            this.buttonC.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonC.Location = new System.Drawing.Point(18, 288);
+            this.buttonC.Name = "buttonC";
+            this.buttonC.Size = new System.Drawing.Size(702, 44);
+            this.buttonC.TabIndex = 4;
+            this.buttonC.Text = "[Option C]";
+            this.buttonC.UseVisualStyleBackColor = true;
+            // 
+            // buttonD
+            // 
+            this.buttonD.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonD.Location = new System.Drawing.Point(18, 338);
+            this.buttonD.Name = "buttonD";
+            this.buttonD.Size = new System.Drawing.Size(702, 44);
+            this.buttonD.TabIndex = 5;
+            this.buttonD.Text = "[Option D]";
+            this.buttonD.UseVisualStyleBackColor = true;
+            // 
+            // TriviaUI
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(732, 403);
+            this.Controls.Add(this.buttonD);
+            this.Controls.Add(this.buttonC);
+            this.Controls.Add(this.buttonB);
+            this.Controls.Add(this.buttonA);
+            this.Controls.Add(this.labelQuestion);
+            this.Controls.Add(this.labelQuestionNumber);
+            this.Name = "TriviaUI";
+            this.Text = "TriviaUI";
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label labelQuestionNumber;
+        private System.Windows.Forms.Label labelQuestion;
+        private System.Windows.Forms.Button buttonA;
+        private System.Windows.Forms.Button buttonB;
+        private System.Windows.Forms.Button buttonC;
+        private System.Windows.Forms.Button buttonD;
+    }
+}

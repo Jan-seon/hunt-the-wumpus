@@ -9,8 +9,7 @@ namespace HuntTheWumpus.GameLocations
 {
     class GameLocations
     {
-        public List<Cave.Room> BatLocations { get; set; }
-        public List<Cave.Room> PitLocations { get; set; }
+       
         public int Bat1Location { get; set; }
         public int Bat2Location { get; set; }
         public int Pit1Location { get; set; }
@@ -63,8 +62,7 @@ namespace HuntTheWumpus.GameLocations
             Bat1Location = rndInt.Next(30);
             Bat2Location = rndInt.Next(30);
 
-            BatLocations.Add(GetRoom(Bat1Location));
-            PitLocations.Add(GetRoom(Bat2Location));
+           
         }
         public void RandomPit()
         {
@@ -72,8 +70,7 @@ namespace HuntTheWumpus.GameLocations
             Pit1Location = rndInt.Next(30);
             Pit2Location = rndInt.Next(30);
             
-            PitLocations.Add(GetRoom(Pit1Location));
-            PitLocations.Add(GetRoom(Pit2Location));
+           
         }
         public void RandomPlayer()
         {
@@ -127,7 +124,7 @@ namespace HuntTheWumpus.GameLocations
             }
             return "";
         }
-        private Cave.Room GetRoom (int roomNumber)
+        public Cave.Room GetRoom (int roomNumber)
         {
             return cave.Rooms[(roomNumber - 1) / 6, (roomNumber - 1) % 6]; 
         }

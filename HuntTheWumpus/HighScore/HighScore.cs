@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HuntTheWumpus.HighScore
 {
-    class HighScore
+    public class HighScore
     {
         public string name { get; set; }
         public int score { get; set; }

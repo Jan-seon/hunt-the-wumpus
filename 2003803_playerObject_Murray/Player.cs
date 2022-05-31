@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace HuntTheWumpus.Player
+namespace _2003803_playerObject_Murray
 {
     class Player
     {
         public int Arrows { get; set; }
         public int Coins { get; set; }
         public int Turns { get; set; }
-        public bool WumpusBundle { get; set; }
-        
+        public int WumpusBundle { get; set; }
 
         public Player()
         {
@@ -21,25 +18,25 @@ namespace HuntTheWumpus.Player
             Turns = 0;
         }
 
-        public int CalculateScore(bool WumpusBundle)
+        public int CalculateScore()
         {
-            return 100 - Turns + Coins + (5 * Arrows) + (WumpusBundle ? 50 : 0); 
+           return 100 - Turns + Coins + (5 * Arrows); //+ wumpus points
         }
 
-        public void ShotArrow()
+        public void ShootArrows()
         {
             Arrows = Arrows--;
         }
 
-        public void PurchaseArrows()
+        public void PurchaceArrows()
         {
             Arrows = Arrows + 2;
             Coins = Coins--;
         }
 
-        public void PurchaseSecret()
+        public void PurchaceSecrets()
         {
-            Coins = Coins--;
+           Coins = Coins--;
         }
 
         public void Move()
