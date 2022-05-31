@@ -18,7 +18,7 @@ namespace HighScoreUnitTest
 
             HighScore highscore = new HighScore("testName", 100, "", dt);
 
-            Assert.AreEqual(highscore, highscoreManager.GetHighScore(dt));
+            Assert.AreEqual(highscore, highscoreManager.GetHighScore("testName"));
         }
 
         [TestMethod]
@@ -34,6 +34,36 @@ namespace HighScoreUnitTest
         }
         [TestMethod]
         public void SortNotCorrect()
+        {
+
+        }
+        [TestMethod]
+        public void SaveCorrect()
+        {
+
+        }
+        [TestMethod]
+        public void SaveNotCorrect()
+        {
+
+        }
+        [TestMethod]
+        public void GetFromFileCorrect()
+        {
+
+        }
+        [TestMethod]
+        public void GetFromFileNotCorrect()
+        {
+
+        }
+        [TestMethod]
+        public void GetHighScoreCorrect()
+        {
+
+        }
+        [TestMethod]
+        public void GetHighScoreNotCorrect()
         {
 
         }
