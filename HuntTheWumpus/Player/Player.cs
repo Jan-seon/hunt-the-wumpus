@@ -28,18 +28,18 @@ namespace HuntTheWumpus.Player
 
         public void ShotArrow()
         {
-            Arrows = Arrows--;
+            Arrows--;
         }
 
         public void PurchaseArrows()
         {
             Arrows = Arrows + 2;
-            Coins = Coins--;
+            Coins--;
         }
 
         public void PurchaseSecret()
         {
-            Coins = Coins--;
+            Coins--;
         }
 
         public void Move()
