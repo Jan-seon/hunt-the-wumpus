@@ -10,16 +10,11 @@ namespace HuntTheWumpus.Cave
     {
         //public static Room[,] Rooms { new Room[5, 6]; set; }
         public Room[,] Rooms = new Room[5, 6];
+        Random rnd = new Random();
         //public Room[] Rooms = new Room[30];
 
         public Cave()
         {
-            //for (int i = 0; i < Rooms.Length; i++)
-            //{
-            //    Room room = new Room(i + 1);
-            //    Rooms[i] = room;
-            //}
-
             for (int i = 0; i < 5; i++)
             {
                 for (int l = 0; l < 6; l++)
@@ -34,9 +29,14 @@ namespace HuntTheWumpus.Cave
                 {
                     Room room = Rooms[i, l];
                     room.Neighbors = FindNeighbors(i, l);
+                    room.Accessible = 0;
                     Rooms[i, l] = room;
                 }
             }
+
+            Rooms[0, 0].Accessible = 1;
+
+            GenerateLayout();
         }
 
         private int GetRow(int index, int num)
@@ -143,23 +143,159 @@ namespace HuntTheWumpus.Cave
 
         public void GenerateLayout()
         {
-            Random rnd = new Random();
+            foreach (Room room in Rooms)
+            {
+                room.TunnelsAmount = rnd.Next(1, 4);
+            }
+
             foreach (Room room in Rooms)
             {
                 List<Room> neighbors = new List<Room>();
                 foreach (Room rom in room.Neighbors)
                 {
-                    neighbors.Add(rom);
+                    if (rom.GateWays.Count < rom.TunnelsAmount)
+                    {
+                        //Check for duplicates
+                        bool good = true;
+                        foreach (Room neighbor in neighbors)
+                        {
+                            if (neighbor.RoomNumber == rom.RoomNumber) good = false;
+                        }
+                        if (good) neighbors.Add(rom);
+                    }
                 }
                 //Room[] tunnles;
-                int tunnlesLeft = 3;
-                for (int i = 0; i < tunnlesLeft; i++)
+                int tunnlesLeft = room.TunnelsAmount - room.GateWays.Count;
+                for (int i = 0; i < tunnlesLeft && neighbors.Count > 0; i++)
                 {
                     int n = rnd.Next(0, neighbors.Count);
                     room.GateWays.Add(neighbors[n]);
+                    neighbors[n].GateWays.Add(room);
+
+                    //Check if neighbor is more accessible
+                    if ((neighbors[n].Accessible + 1 < room.Accessible && neighbors[n].Accessible > 0) || neighbors[n].RoomNumber == 1)
+                    {
+                        room.Accessible = neighbors[n].Accessible + 1;
+                    }
+
+                    if (room.Accessible > 0 && room.Accessible < neighbors[n].Accessible) neighbors[n].Accessible = room.Accessible + 1;
                     neighbors.RemoveAt(n);
                 }
+                foreach (Room tunnel in room.GateWays)
+                {
+                    if ((tunnel.Accessible + 1 < room.Accessible && tunnel.Accessible > 0) || tunnel.RoomNumber == 1)
+                    {
+                        room.Accessible = tunnel.Accessible + 1;
+                    }
+                }
+
             }
+
+            MakeAllRoomsAccessible();
+        }
+
+        void MakeAllRoomsAccessible()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (Room room in Rooms)
+                {
+                    MakeRoomAccessible(room);
+                }
+            }
+            foreach (Room room in Rooms)
+            {
+                if (room.Accessible <= 0)
+                {
+                    MakeAllRoomsAccessible();
+                }
+            }
+        }
+
+        void MakeRoomAccessible(Room room)
+        {
+            if (room.Accessible <= 0)
+            {
+                foreach (Room tunnel in room.GateWays)
+                {
+                    if (tunnel.Accessible > 0)
+                    {
+                        room.Accessible = tunnel.Accessible + 1;
+                        MakeRoomAccessible(room);
+                        return;
+                    }
+                }
+
+                List<Room> neighbors = new List<Room>();
+                foreach (Room neighbor in room.Neighbors)
+                {
+                    if (neighbor.Accessible > 0)
+                    {
+                        neighbors.Add(neighbor);
+                        foreach (Room tunnel in room.GateWays)
+                        {
+                            if (neighbor.GateWays.Count >= 3)
+                            {
+                                //Change variable name
+                                bool good = false;
+                                foreach (Room t in neighbor.GateWays)
+                                {
+                                    if (t.Accessible < neighbor.Accessible) good = true;
+                                }
+
+                                if (!good && neighbor.Accessibility() < 2) neighbors.Remove(neighbor);
+                            }
+
+                            else if (neighbor.RoomNumber == tunnel.RoomNumber)
+                            {
+                                neighbors.Remove(neighbor);
+                                if (tunnel.Accessible + 1 < room.Accessible || room.Accessible <= 0) room.Accessible = tunnel.Accessible + 1;
+                            }
+                            //else if (neighbor.Accessible + 1 < room.Accessible) room.Accessible = neighbor.Accessible + 1;
+                        }
+                        if (room.Accessible > 0) return;
+                    }
+                }
+
+                if (neighbors.Count > 0)
+                {
+                    int n = rnd.Next(0, neighbors.Count);
+
+                    if (neighbors[n].GateWays.Count >= 3)
+                    {
+                        List<Room> idk = new List<Room>();
+                        foreach (Room t in neighbors[n].GateWays)
+                        {
+                            if (t.Accessible < neighbors[n].Accessible) idk.Add(t);
+                        }
+                        int r = rnd.Next(0, idk.Count);
+                        idk[r].GateWays.Remove(neighbors[n]);
+                        neighbors[n].GateWays.Remove(idk[r]);
+                    }
+
+                    room.GateWays.Add(neighbors[n]);
+                    neighbors[n].GateWays.Add(room);
+                    MakeRoomAccessible(neighbors[n]);
+                }
+            }
+
+            else
+            {
+                foreach (Room tunnel in room.GateWays)
+                {
+                    if (tunnel.Accessible <= 0)
+                    {
+                        tunnel.Accessible = room.Accessible + 1;
+                        MakeRoomAccessible(tunnel);
+                    }
+                    else if (tunnel.Accessible + 1 < room.Accessible)
+                    {
+                        room.Accessible = tunnel.Accessible + 1;
+                    }
+                }
+
+            }
+            return;
         }
     }
 }
