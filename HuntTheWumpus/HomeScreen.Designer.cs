@@ -77,7 +77,6 @@ namespace HuntTheWumpus
             this.labelHeader.Name = "labelHeader";
             this.labelHeader.Size = new System.Drawing.Size(980, 100);
             this.labelHeader.TabIndex = 6;
-            this.labelHeader.Text = "Johnny Depp vs Amber Heard";
             this.labelHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTitle

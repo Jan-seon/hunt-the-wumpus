@@ -25,112 +25,241 @@ namespace HuntTheWumpus
             updateUI();
         }
 
+        private int getButtonNumber(object sender)
+        {
+            // Return the room number of the button the user clicks.
+            return int.Parse(((Button)sender).Text);
+        }
+
         private void move(object sender, EventArgs e)
         {
             if (shooting)
             {
-
+                // Shoot an arrow.
+                shootArrow(getButtonNumber(sender));
             }
             else
             {
-                gameLocations.PlayerLocation = int.Parse(((Button)sender).Text);
+                // Update the player location.
+                gameLocations.PlayerLocation = getButtonNumber(sender);
+
+                // Update the player information.
                 player.Move();
 
+                // Update the UI.
+                updateUI();
+
+                // TODO: CHECK IF PLAYER ENCOUNTERS A HAZARD!
+                encounterBat();
+
+                // Check for warnings
                 List<string> warnings = gameLocations.GiveWarning();
 
+                // Display the warnings.
                 richTextBoxWarnings.Text = "";
                 foreach(string warning in warnings)
                 {
                     richTextBoxWarnings.Text = $"{richTextBoxWarnings.Text}{warning}\n";
                 }
-
-                updateUI();
             }
         }
 
-        private void shootArrow(object sender, EventArgs e)
+        private void shootArrow(int room)
         {
+            // Update player information.
+            player.ShotArrow();
+
+            // Check if player hits the wumpus.
+            bool gameOver = gameLocations.ShootArrow(room);
+
+            // Update the UI.
             shooting = !shooting;
             enableUI(!shooting);
-
             updateUI();
+
+            // If player hits the wumpus...
+            if (gameOver)
+            {
+                // End the game.
+                endGame(true);
+            }
+            
+            // If player misses the wumpus...
+            else
+            {
+                // Notify the player.
+                labelMessage.Text = "You missed.";
+            }
+        }
+
+        private void encounterBat()
+        {
+            // Retrive the locations.
+            Cave.Room playerRoom = gameLocations.GetRoom(gameLocations.PlayerLocation);
+            Cave.Room batRoom1 = gameLocations.GetRoom(gameLocations.Bat1Location);
+            Cave.Room batRoom2 = gameLocations.GetRoom(gameLocations.Bat2Location);
+
+            // If the player is in the same room
+            if (playerRoom.RoomNumber == batRoom1.RoomNumber || playerRoom.RoomNumber == batRoom2.RoomNumber)
+            {
+                // Change the player's locations.
+                gameLocations.RandomPlayer();
+
+                // Update the UI.
+                updateUI();
+
+                // Notify the user.
+                labelMessage.Text = "You encountered a bat.";
+            }  
+        }
+
+        private void encounterPit()
+        {
+
+        }
+
+        private void shootArrowButtonClick(object sender, EventArgs e)
+        {
+            // Update the UI.
+            shooting = !shooting;
+            enableUI(!shooting);
+            updateUI();
+
+            // If the player enables shooting mode...
+            if (shooting)
+                // Notify the user.
+                labelMessage.Text = "Shooting...";
         }
 
         private void purchaseArrow(object sender, EventArgs e)
         {
+            // Retrive three random questions.
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
+            // Create a new trivia UI.
             TriviaUI triviaUI = new TriviaUI(questions);
             triviaUI.ShowDialog();
 
+            // If the user answers at least two questions correctly...
             if (triviaUI.CorrectAnswers >= 2)
             {
+                // Buy arrows.
                 player.PurchaseArrows();
+
+                // Update the UI.
+                updateUI();
+
+                // Notify the user.
+                labelMessage.Text = "You bought 2 arrows!";
             }
 
+            // If the user fails trivia...
+            else
+            {
+                // Notify the user.
+                labelMessage.Text = "You failed.";
+            }
+
+            // Close the trivia objects.
             triviaUI.Close();
-            updateUI();
         }
 
         private void purchaseSecret(object sender, EventArgs e)
         {
+            // Retrive three random questions.
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
+            // Create a new trivia UI.
             TriviaUI triviaUI = new TriviaUI(questions);
             triviaUI.ShowDialog();
 
+            // If the user answers at least two questions correctly...
             if (triviaUI.CorrectAnswers >= 2)
             {
+                // Update the player information.
                 player.PurchaseSecret();
+
+                // Retrieve a random hint.
                 string hint = gameLocations.GetHint();
+
+                // Display the hint.
                 richTextBoxHints.Text = $"{hint}\n{richTextBoxHints.Text}";
+
+                // Update the UI.
+                updateUI();
+
+                // Notify the user.
+                labelMessage.Text = "You bought a hint!";
             }
 
+            // If the user fails trivia...
+            else
+            {
+                labelMessage.Text = "You failed.";
+            }
+            
+            // Close the trivia UI.
             triviaUI.Close();
-            updateUI();
         }
 
         private void enableUI(bool enable)
         {
+            // Enable/Disable the buttons.
             buttonPurchaseArrows.Enabled = enable;
             buttonPurchaseSecret.Enabled = enable;
         }
 
         private void updateUI()
         {
+            // Update the player information.
             labelCoins.Text = player.Coins.ToString();
             labelArrows.Text = player.Arrows.ToString();
             labelScore.Text = player.CalculateScore(false).ToString();
 
+            // If their is a message, remove it.
+            if (labelMessage.Text != "")
+            {
+                labelMessage.Text = "";
+            }
+
+            // Get the room object of the player.
             Cave.Room room = gameLocations.GetRoom(gameLocations.PlayerLocation);
-            Cave.Room[] neighbors = room.Neighbors;
-            List<Cave.Room> gateways = room.GateWays;
 
-            List<int> gatewaysNumbers = new List<int>();
-            foreach(Cave.Room gateway in gateways)
-                gatewaysNumbers.Add(gateway.RoomNumber);
+            // Get the gateways.
+            Cave.Room[] gateways = room.GetGateWays();
 
+            // Create a list of all the buttons.
+            Button[] allMoveButtons = { buttonMove1, buttonMove2, buttonMove3,
+                    buttonMove4, buttonMove5, buttonMove6};
+
+            // Display the room number.
             labelCurrentRoom.Text = room.RoomNumber.ToString();
 
-            buttonMove1.Text = neighbors[0].RoomNumber.ToString();
-            buttonMove2.Text = neighbors[1].RoomNumber.ToString();
-            buttonMove3.Text = neighbors[2].RoomNumber.ToString();
-            buttonMove4.Text = neighbors[3].RoomNumber.ToString();
-            buttonMove5.Text = neighbors[4].RoomNumber.ToString();
-            buttonMove6.Text = neighbors[5].RoomNumber.ToString();
+            // Loop through the rooms.
+            for (int i = 0; i < 6; i++)
+            {
+                // If there is not a gateway...
+                if (gateways[i] == null)
+                {
+                    // Make the button invisible.
+                    allMoveButtons[i].Visible = false;
+                }
 
-            /*            if (gatewaysNumbers.Contains(neighbors[0].RoomNumber))
-                            buttonMove1.Text = neighbors[0].RoomNumber.ToString();
-                        if (gatewaysNumbers.Contains(neighbors[1].RoomNumber))
-                            buttonMove2.Text = neighbors[1].RoomNumber.ToString();
-                        if (gatewaysNumbers.Contains(neighbors[2].RoomNumber))
-                            buttonMove3.Text = neighbors[2].RoomNumber.ToString();
-                        if (gatewaysNumbers.Contains(neighbors[3].RoomNumber))
-                            buttonMove4.Text = neighbors[3].RoomNumber.ToString();
-                        if (gatewaysNumbers.Contains(neighbors[4].RoomNumber))
-                            buttonMove5.Text = neighbors[4].RoomNumber.ToString();
-                        if (gatewaysNumbers.Contains(neighbors[5].RoomNumber))
-                            buttonMove6.Text = neighbors[5].RoomNumber.ToString();*/
+                // If there is a gateway...
+                else
+                {
+                    // Update the button number.
+                    allMoveButtons[i].Text = gateways[i].RoomNumber.ToString();
+
+                    // Make the button visible.
+                    allMoveButtons[i].Visible = true;
+                }
+            }
+        }
+
+        private void endGame(bool isVictorious)
+        {
+            labelMessage.Text = "You win.";
         }
     }
 }
