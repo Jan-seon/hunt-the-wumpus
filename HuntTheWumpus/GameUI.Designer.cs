@@ -51,6 +51,7 @@ namespace HuntTheWumpus
             this.richTextBoxHints = new System.Windows.Forms.RichTextBox();
             this.groupBoxWarnings = new System.Windows.Forms.GroupBox();
             this.richTextBoxWarnings = new System.Windows.Forms.RichTextBox();
+            this.labelMessage = new System.Windows.Forms.Label();
             this.groupBoxPlayerInformation.SuspendLayout();
             this.groupBoxActions.SuspendLayout();
             this.groupBoxHints.SuspendLayout();
@@ -262,7 +263,7 @@ namespace HuntTheWumpus
             this.buttonShootArrow.TabStop = false;
             this.buttonShootArrow.Text = "Shoot an arrow";
             this.buttonShootArrow.UseVisualStyleBackColor = true;
-            this.buttonShootArrow.Click += new System.EventHandler(this.shootArrow);
+            this.buttonShootArrow.Click += new System.EventHandler(this.shootArrowButtonClick);
             // 
             // groupBoxHints
             // 
@@ -304,11 +305,21 @@ namespace HuntTheWumpus
             this.richTextBoxWarnings.TabIndex = 0;
             this.richTextBoxWarnings.Text = "";
             // 
+            // labelMessage
+            // 
+            this.labelMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMessage.Location = new System.Drawing.Point(337, 20);
+            this.labelMessage.Name = "labelMessage";
+            this.labelMessage.Size = new System.Drawing.Size(308, 100);
+            this.labelMessage.TabIndex = 12;
+            this.labelMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // GameUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 703);
+            this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.groupBoxWarnings);
             this.Controls.Add(this.groupBoxHints);
             this.Controls.Add(this.groupBoxActions);
@@ -356,6 +367,7 @@ namespace HuntTheWumpus
         private System.Windows.Forms.RichTextBox richTextBoxHints;
         private System.Windows.Forms.GroupBox groupBoxWarnings;
         private System.Windows.Forms.RichTextBox richTextBoxWarnings;
+        private System.Windows.Forms.Label labelMessage;
     }
 }
 
