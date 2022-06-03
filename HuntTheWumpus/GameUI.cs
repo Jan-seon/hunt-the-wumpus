@@ -49,8 +49,9 @@ namespace HuntTheWumpus
                 // Update the UI.
                 updateUI();
 
-                // TODO: CHECK IF PLAYER ENCOUNTERS A HAZARD!
+                // Check if player encounters a hazard.
                 encounterBat();
+                encounterPit();
 
                 // Check for warnings
                 List<string> warnings = gameLocations.GiveWarning();
@@ -94,12 +95,12 @@ namespace HuntTheWumpus
 
         private void encounterBat()
         {
-            // Retrive the locations.
+            // Retrieve the locations.
             Cave.Room playerRoom = gameLocations.GetRoom(gameLocations.PlayerLocation);
             Cave.Room batRoom1 = gameLocations.GetRoom(gameLocations.Bat1Location);
             Cave.Room batRoom2 = gameLocations.GetRoom(gameLocations.Bat2Location);
 
-            // If the player is in the same room
+            // If the player is in the same room...
             if (playerRoom.RoomNumber == batRoom1.RoomNumber || playerRoom.RoomNumber == batRoom2.RoomNumber)
             {
                 // Change the player's locations.
@@ -115,7 +116,44 @@ namespace HuntTheWumpus
 
         private void encounterPit()
         {
+            // Retrieve the locations.
+            Cave.Room playerRoom = gameLocations.GetRoom(gameLocations.PlayerLocation);
+            Cave.Room pitRoom1 = gameLocations.GetRoom(gameLocations.Pit1Location);
+            Cave.Room pitRoom2 = gameLocations.GetRoom(gameLocations.Pit2Location);
 
+            // If the player is in the same room...
+            if (playerRoom.RoomNumber == pitRoom1.RoomNumber || playerRoom.RoomNumber == pitRoom2.RoomNumber)
+            {
+                // Retrieve three random questions.
+                List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
+
+                // Create a new trivia UI.
+                TriviaUI triviaUI = new TriviaUI(questions);
+                triviaUI.ShowDialog();
+
+                // If the user answers at least two questions correctly...
+                if (triviaUI.CorrectAnswers >= 2)
+                {
+                    // Move the player back to room 1.
+                    gameLocations.PlayerLocation = 1;
+
+                    // Update the UI.
+                    updateUI();
+
+                    // Notify the user.
+                    labelMessage.Text = "You escaped the pit.";
+                }
+
+                // If the user fails trivia...
+                else
+                {
+                    // End the game.
+                    endGame(false);
+                }
+
+                // Close the trivia objects.
+                triviaUI.Close();
+            }
         }
 
         private void shootArrowButtonClick(object sender, EventArgs e)
@@ -133,7 +171,7 @@ namespace HuntTheWumpus
 
         private void purchaseArrow(object sender, EventArgs e)
         {
-            // Retrive three random questions.
+            // Retrieve three random questions.
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
             // Create a new trivia UI.

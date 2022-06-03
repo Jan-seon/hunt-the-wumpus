@@ -278,6 +278,7 @@ namespace HuntTheWumpus
             // 
             // richTextBoxHints
             // 
+            this.richTextBoxHints.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxHints.Location = new System.Drawing.Point(7, 30);
             this.richTextBoxHints.Name = "richTextBoxHints";
             this.richTextBoxHints.ReadOnly = true;
