@@ -55,11 +55,11 @@ namespace HighScoreUnitTest
         {
             HighScoreManager highScoreManager = new HighScoreManager();
             DateTime dt = DateTime.Now;
-            highScoreManager.Add("A", 85, "1", dt);
+            highScoreManager.Add("A", 81, "1", dt);
 
-            highScoreManager.Add("A", 65, "1", dt);
+            highScoreManager.Add("A", 62, "1", dt);
 
-            highScoreManager.Add("A", 75, "1", dt);
+            highScoreManager.Add("A", 73, "1", dt);
 
             highScoreManager.Sort();
 
@@ -84,7 +84,18 @@ namespace HighScoreUnitTest
         [TestMethod]
         public void SaveNotCorrect()
         {
+            HighScoreManager highScoreManager = new HighScoreManager();
+            DateTime dt = DateTime.Now;
+            highScoreManager.Add("A", 85, "1", dt);
 
+            highScoreManager.Add("A", 65, "1", dt);
+
+            highScoreManager.Add("A", 75, "1", dt);
+            highScoreManager.SaveToFile();
+
+            var getFromFile = highScoreManager.GetFromFile();
+
+            Assert.IsFalse(getFromFile == highScoreManager.HighScores);
         }
         [TestMethod]
         public void GetFromFileCorrect()
