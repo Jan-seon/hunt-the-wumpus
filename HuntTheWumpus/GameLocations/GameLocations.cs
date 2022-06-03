@@ -74,7 +74,7 @@ namespace HuntTheWumpus.GameLocations
         {
             PlayerLocation = rndInt.Next(1, 30);
         }
-        //TODO: Update this function, it does more than just shoot an Arrow
+       
         public bool ShootArrow(int roomNumber)
         {
             if (WumpusLocation == roomNumber) return true;
