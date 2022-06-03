@@ -10,10 +10,13 @@ namespace HuntTheWumpus.HighScore
     public class HighScoreManager
     {
 
-        public List<HighScore> HighScores { get; set; }
+        public List<HighScore> HighScores { get; set; } = new List<HighScore>();
 
         public void Add( string n, int s, string cn, DateTime dt)
         {
+            if (string.IsNullOrEmpty(n) || string.IsNullOrEmpty(cn))
+                throw new Exception();
+
             HighScore highscore = new HighScore(n, s, cn, dt);
             HighScores.Add(highscore);
             Sort(); 
@@ -46,12 +49,10 @@ namespace HuntTheWumpus.HighScore
         {
             return HighScores;
         }
-        public void GetFromFile(string path)
+        public List<HighScore> GetFromFile()
         {
-           
-
             List<HighScore> highScoresFromFile = new List<HighScore>();
-            using (StreamReader sr = new StreamReader(path))
+            using (StreamReader sr = new StreamReader("HighScore/HighscoreFile.txt"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -61,15 +62,16 @@ namespace HuntTheWumpus.HighScore
                 }
             }
             HighScores = highScoresFromFile;
+            return HighScores;
 
         }
-        public void SaveToFile(string path)
+        public void SaveToFile()
         {
-            using (StreamWriter sw = new StreamWriter(path))
+            using (StreamWriter sw = new StreamWriter("HighScore/HighscoreFile.txt"))
             {
                 foreach(HighScore highScore in HighScores)
                 {
-                    sw.WriteLine(highScore.name, highScore.score, highScore.caveName, highScore.dateTime);
+                    sw.WriteLine(highScore.name + "," + highScore.score + "," + highScore.caveName + "," + highScore.dateTime);
                 }
             }
             
