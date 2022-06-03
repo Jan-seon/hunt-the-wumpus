@@ -23,17 +23,20 @@ namespace HuntTheWumpus
         {
             InitializeComponent();
 
+            // Initialize class properties.
             this.questionList = questionList;
             this.currentQuestion = questionList[0];
-            this.currentNumber = 1;
+            this.currentNumber = 0;
             this.totalQuestions = questionList.Count();
 
+            // Update the UI.
             updateUI();
         }
 
         private void updateUI()
         {
-            labelNumber.Text = $"Question: {currentNumber} of {totalQuestions}";
+            // Update the UI.
+            labelNumber.Text = $"Question: {currentNumber+1} of {totalQuestions}";
             labelQuestion.Text = currentQuestion.TriviaQuestion;
             buttonA.Text = currentQuestion.OptionA;
             buttonB.Text = currentQuestion.OptionB;
@@ -43,22 +46,31 @@ namespace HuntTheWumpus
 
         private void userGuesses(object sender, EventArgs e)
         {
+            // Check if the user is correct.
             bool isCorrect = currentQuestion.CheckAnswer(((Button)sender).Text);
 
+            // If the user is correct...
             if (isCorrect)
             {
+                // Increment the correct answers property.
                 CorrectAnswers++;
             }
 
-            if (currentNumber == totalQuestions)
+            // If the user has answered all questions.
+            if (currentNumber == totalQuestions-1)
             {
-
+                // Close the UI.
+                this.Hide();
             }
+
+            // Otherwise...
             else
             {
+                // Retrieve the next question.
                 currentNumber++;
                 currentQuestion = questionList[currentNumber];
 
+                // Update the UI.
                 updateUI();
             }
         }

@@ -52,36 +52,37 @@ namespace HuntTheWumpus.GameLocations
         public void RandomWumpus()
         {
             WumpusLocation = 0;
-            int room = rndInt.Next(30);
+            int room = rndInt.Next(1, 30);
             WumpusLocation = room;
         }
         public void RandomBat()
         {
-            Bat1Location = rndInt.Next(30);
-            Bat2Location = rndInt.Next(30);
+            Bat1Location = rndInt.Next(1, 30);
+            Bat2Location = rndInt.Next(1, 30);
 
            
         }
         public void RandomPit()
         {
             
-            Pit1Location = rndInt.Next(30);
-            Pit2Location = rndInt.Next(30);
+            Pit1Location = rndInt.Next(1, 30);
+            Pit2Location = rndInt.Next(1, 30);
             
            
         }
         public void RandomPlayer()
         {
-            PlayerLocation = rndInt.Next(30);
+            PlayerLocation = rndInt.Next(1, 30);
         }
-        //TODO: Update this function, it does more than just shoot an Arrow
+       
         public bool ShootArrow(int roomNumber)
         {
-            if (WumpusLocation == roomNumber)
-                return true;
-
-            RandomWumpus();
-            return false;
+            if (WumpusLocation == roomNumber) return true;
+            else
+            {
+                RandomWumpus();
+                return false;
+            }
         }
         public string GetHint()
         {
@@ -100,17 +101,17 @@ namespace HuntTheWumpus.GameLocations
 
                     if (hintOutput == 0)
                     {
-                        hint = "There is a pit in room " + GetRoom(Pit1Location).ToString();
+                        hint = "There is a pit in room " + GetRoom(Pit1Location).RoomNumber.ToString();
                         return hint;
                     }
                     else if (hintOutput == 1)
                     {
-                        hint = "There is a bat in room " + GetRoom(Bat1Location).ToString();
+                        hint = "There is a bat in room " + GetRoom(Bat1Location).RoomNumber.ToString();
                         return hint;
                     }
                     else
                     {
-                        hint = "The wumpus is in room " + GetRoom(WumpusLocation).ToString();
+                        hint = "The wumpus is in room " + GetRoom(WumpusLocation).RoomNumber.ToString();
                         return hint;
                     }
                 }

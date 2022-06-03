@@ -55,6 +55,7 @@ namespace HuntTheWumpus
             this.labelQuestion.Size = new System.Drawing.Size(708, 100);
             this.labelQuestion.TabIndex = 1;
             this.labelQuestion.Text = "[Question]\r\n[Question]\r\n[Question]";
+            this.labelQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonA
             // 
@@ -65,6 +66,7 @@ namespace HuntTheWumpus
             this.buttonA.TabIndex = 2;
             this.buttonA.Text = "[Option A]";
             this.buttonA.UseVisualStyleBackColor = true;
+            this.buttonA.Click += new System.EventHandler(this.userGuesses);
             // 
             // buttonB
             // 
@@ -75,6 +77,7 @@ namespace HuntTheWumpus
             this.buttonB.TabIndex = 3;
             this.buttonB.Text = "[Option B]";
             this.buttonB.UseVisualStyleBackColor = true;
+            this.buttonB.Click += new System.EventHandler(this.userGuesses);
             // 
             // buttonC
             // 
@@ -85,6 +88,7 @@ namespace HuntTheWumpus
             this.buttonC.TabIndex = 4;
             this.buttonC.Text = "[Option C]";
             this.buttonC.UseVisualStyleBackColor = true;
+            this.buttonC.Click += new System.EventHandler(this.userGuesses);
             // 
             // buttonD
             // 
@@ -95,6 +99,7 @@ namespace HuntTheWumpus
             this.buttonD.TabIndex = 5;
             this.buttonD.Text = "[Option D]";
             this.buttonD.UseVisualStyleBackColor = true;
+            this.buttonD.Click += new System.EventHandler(this.userGuesses);
             // 
             // TriviaUI
             // 
