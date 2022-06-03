@@ -26,13 +26,14 @@ namespace HighScoreUnitTest
         [TestMethod]
         public void AddNotCorrect()
         {
-            //Add function has a null or string.Empty check, will throw exception
-            //Not sure how to compare since it doesn't like that Add function is void
-            // - Mr. Fernandez
-            /*
+            //Made some changes, this will be the closest we can get to see if Add works as expected
+            // - Mr Fernandez
+
             HighScoreManager highscoreManager = new HighScoreManager();
-            Assert.ThrowsException<Exception>(highscoreManager.Add(null, 1, null, DateTime.Now));
-            */ 
+            highscoreManager.Add("A", 1, "1", DateTime.Now);
+            highscoreManager.Add("B", 2, "2", DateTime.Now);
+
+            Assert.IsFalse(highscoreManager.GetHighScores()[0] == highscoreManager.GetHighScores()[1]);
         }
         [TestMethod]
         public void SortCorrect()
@@ -83,7 +84,18 @@ namespace HighScoreUnitTest
         [TestMethod]
         public void SaveNotCorrect()
         {
+            HighScoreManager highScoreManager = new HighScoreManager();
+            DateTime dt = DateTime.Now;
+            highScoreManager.Add("A", 85, "1", dt);
 
+            highScoreManager.Add("A", 65, "1", dt);
+
+            highScoreManager.Add("A", 75, "1", dt);
+            highScoreManager.SaveToFile();
+
+            var getFromFile = highScoreManager.GetFromFile();
+
+            Assert.IsFalse(getFromFile == highScoreManager.HighScores);
         }
         [TestMethod]
         public void GetFromFileCorrect()
