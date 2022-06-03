@@ -18,7 +18,7 @@ namespace HuntTheWumpus.Trivia
 
         public void ReadFile()
         {
-            using (StreamReader sr = new StreamReader("huntTheWumpusQuestions.txt"))
+            using (StreamReader sr = new StreamReader("Trivia/huntTheWumpusQuestions.txt"))
             {
                 while (!sr.EndOfStream)
                 {
