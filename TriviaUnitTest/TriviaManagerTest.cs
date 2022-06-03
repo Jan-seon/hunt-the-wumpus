@@ -24,5 +24,15 @@ namespace TriviaUnitTest
             triviaManager.ReadFile();
             Assert.AreNotEqual(triviaManager.GetRandomQuestion(5).Count, 3);
         }
+
+        [TestMethod]
+        public void CorrectGuess()
+        {
+            TriviaManager triviaManager = new TriviaManager();
+
+            triviaManager.ReadFile();
+
+            string question = triviaManager.GetRandomQuestion(1).ToString();
+        }
     }
 }

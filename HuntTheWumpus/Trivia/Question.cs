@@ -15,8 +15,6 @@ namespace HuntTheWumpus.Trivia
         public string OptionD { get; set; }
         public string Answer { get; set; }
         
-        //TODO: I (Mr Fernandez) changed this because I think you had the values flipped
-        //Example: tq = TriviaQuestion, instead of "TriviaQuestion = tq"
         public Question(string tq, string a, string b, string c, string d, string ans)
         {
             TriviaQuestion = tq;
