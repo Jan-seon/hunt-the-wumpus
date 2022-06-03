@@ -14,24 +14,22 @@ namespace HuntTheWumpus.Trivia
         public string OptionC { get; set; }
         public string OptionD { get; set; }
         public string Answer { get; set; }
-
+        
+        //TODO: I (Mr Fernandez) changed this because I think you had the values flipped
+        //Example: tq = TriviaQuestion, instead of "TriviaQuestion = tq"
         public Question(string tq, string a, string b, string c, string d, string ans)
         {
-            tq = TriviaQuestion;
-            a = OptionA;
-            b = OptionB;
-            c = OptionC;
-            d = OptionD;
-            ans = Answer;
+            TriviaQuestion = tq;
+            OptionA = a;
+            OptionB = b;
+            OptionC = c;
+            OptionD = d;
+            Answer = ans;
         }
 
         public bool CheckAnswer(string guess)
         {
-            if (guess == Answer)
-            {
-                return true;
-            }
-            return false;
+            return guess == Answer;
         }
     }
 }
