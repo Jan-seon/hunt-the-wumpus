@@ -27,9 +27,7 @@ namespace HuntTheWumpus.GameLocations
             RandomBat();
             RandomPit();
             PlayerLocation = 1;
-
-           
-           }
+        }
         public List<string> GiveWarning()
         {
             List<string> warnings = new List<string>();
@@ -76,19 +74,14 @@ namespace HuntTheWumpus.GameLocations
         {
             PlayerLocation = rndInt.Next(30);
         }
+        //TODO: Update this function, it does more than just shoot an Arrow
         public bool ShootArrow(int roomNumber)
         {
-            bool winOrLose = false;
             if (WumpusLocation == roomNumber)
-            {
-                winOrLose = true;
-                
-            }
-            else
-            {
-                RandomWumpus();
-            }
-            return winOrLose;
+                return true;
+
+            RandomWumpus();
+            return false;
         }
         public string GetHint()
         {
