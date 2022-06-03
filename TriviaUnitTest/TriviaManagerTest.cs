@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
 using HuntTheWumpus.Trivia;
+using System;
 
 namespace TriviaUnitTest
 {
@@ -9,7 +8,7 @@ namespace TriviaUnitTest
     public class TriviaManagerTest
     {
         [TestMethod]
-        public void QuestionsCorrect()
+        public void QuestionQuantityCorrect()
         {
             TriviaManager triviaManager = new TriviaManager();
 
