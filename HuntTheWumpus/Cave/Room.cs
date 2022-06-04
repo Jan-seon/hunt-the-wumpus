@@ -31,7 +31,7 @@ namespace HuntTheWumpus.Cave
         }
 
         //This function is for the UI to easily get the rooms it needs to put on the button.
-        //When a room is null, that means thats a room you can't go to.
+        //When a room is null, that means thats a room you can't go to it.
         public Room[] GetGateWays()
         {
             Room[] tunnels = new Room[6];
@@ -46,7 +46,16 @@ namespace HuntTheWumpus.Cave
                 }
             }
 
-            Room[] output = { tunnels[1], tunnels[2], tunnels[4], tunnels[5], tunnels[3], tunnels[0] };
+
+            Room[] output = new Room[6];
+            if (RoomNumber % 2 == 0)
+            {
+                output = new Room[] { tunnels[0], tunnels[2], tunnels[5], tunnels[4], tunnels[3], tunnels[1] };
+            }
+            else
+            {
+                output = new Room[] { tunnels[1], tunnels[2], tunnels[4], tunnels[5], tunnels[3], tunnels[0] };
+            }
 
             return output;
         }
