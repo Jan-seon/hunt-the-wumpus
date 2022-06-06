@@ -155,13 +155,14 @@ namespace HuntTheWumpus.Cave
                 {
                     if (rom.GateWays.Count < rom.TunnelsAmount)
                     {
+                        neighbors.Add(rom);
                         //Check for duplicates
                         bool good = true;
-                        foreach (Room neighbor in neighbors)
+                        foreach (Room tunnel in rom.GateWays)
                         {
-                            if (neighbor.RoomNumber == rom.RoomNumber) good = false;
+                            if (tunnel.RoomNumber == rom.RoomNumber) good = false;
                         }
-                        if (good) neighbors.Add(rom);
+                        if (!good) neighbors.Remove(rom);
                     }
                 }
                 //Room[] tunnles;
@@ -196,12 +197,9 @@ namespace HuntTheWumpus.Cave
 
         void MakeAllRoomsAccessible()
         {
-            for (int i = 0; i < 4; i++)
+            foreach (Room room in Rooms)
             {
-                foreach (Room room in Rooms)
-                {
-                    MakeRoomAccessible(room);
-                }
+                MakeRoomAccessible(room);
             }
             foreach (Room room in Rooms)
             {
@@ -214,7 +212,8 @@ namespace HuntTheWumpus.Cave
 
         void MakeRoomAccessible(Room room)
         {
-            if (room.Accessible <= 0)
+            //Room is not Accessible
+            if (room.Accessible <= 0 && room.GateWays.Count < 3)
             {
                 foreach (Room tunnel in room.GateWays)
                 {
@@ -243,7 +242,7 @@ namespace HuntTheWumpus.Cave
                                     if (t.Accessible < neighbor.Accessible) good = true;
                                 }
 
-                                if (!good && neighbor.Accessibility() < 2) neighbors.Remove(neighbor);
+                                if (!good || neighbor.Accessibility() < 2) neighbors.Remove(neighbor);
                             }
 
                             else if (neighbor.RoomNumber == tunnel.RoomNumber)
@@ -279,7 +278,9 @@ namespace HuntTheWumpus.Cave
                 }
             }
 
-            else
+
+            //Room is already accessible
+            else if (room.Accessible > 0)
             {
                 foreach (Room tunnel in room.GateWays)
                 {
