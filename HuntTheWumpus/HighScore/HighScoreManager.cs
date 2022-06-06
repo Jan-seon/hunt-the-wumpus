@@ -12,12 +12,12 @@ namespace HuntTheWumpus.HighScore
 
         public List<HighScore> HighScores { get; set; } = new List<HighScore>();
 
-        public void Add( string n, int s, string cn, DateTime dt)
+        public void Add( string n, int s, string cn, DateTime dt, int t, int gL, int aL, bool iWK)
         {
             if (string.IsNullOrEmpty(n) || string.IsNullOrEmpty(cn))
                 throw new Exception();
 
-            HighScore highscore = new HighScore(n, s, cn, dt);
+            HighScore highscore = new HighScore(n, s, cn, dt, t, gL, aL, iWK);
             HighScores.Add(highscore);
             Sort(); 
 
@@ -57,7 +57,7 @@ namespace HuntTheWumpus.HighScore
                 while (!sr.EndOfStream)
                 {
                     string[] highScore = sr.ReadLine().Split(',');
-                    HighScore highScoreObject = new HighScore(highScore[0], Convert.ToInt32(highScore[1]), highScore[2], Convert.ToDateTime(highScore[3]));
+                    HighScore highScoreObject = new HighScore(highScore[0], Convert.ToInt32(highScore[1]), highScore[2], Convert.ToDateTime(highScore[3]), Convert.ToInt32(highScore[4]), Convert.ToInt32(highScore[5]), Convert.ToInt32(highScore[6]), Convert.ToBoolean(highScore[7]));
                     highScoresFromFile.Add(highScoreObject);
                 }
             }
@@ -71,7 +71,7 @@ namespace HuntTheWumpus.HighScore
             {
                 foreach(HighScore highScore in HighScores)
                 {
-                    sw.WriteLine(highScore.name + "," + highScore.score + "," + highScore.caveName + "," + highScore.dateTime);
+                    sw.WriteLine(highScore.name + "," + highScore.score + "," + highScore.caveName + "," + highScore.dateTime + "," + highScore.turns + "," + highScore.goldLeft + "," + highScore.arrowsLeft + "," + highScore.isWumpKilled);
                 }
             }
             

@@ -28,11 +28,19 @@ namespace TriviaUnitTest
         [TestMethod]
         public void CorrectGuess()
         {
-            TriviaManager triviaManager = new TriviaManager();
+            Question question = new Question("test", "a", "b", "c", "d", "b");
 
-            triviaManager.ReadFile();
+            string guess = "b";
+            Assert.IsTrue(question.CheckAnswer(guess));
+        }
 
-            string question = triviaManager.GetRandomQuestion(1).ToString();
+        [TestMethod]
+        public void IncorrectGuess()
+        {
+            Question question = new Question("test", "a", "b", "c", "d", "b");
+
+            string guess = "c";
+            Assert.IsFalse(question.CheckAnswer(guess));
         }
     }
 }
