@@ -54,6 +54,12 @@
     <Compile Include="CreditsUI.Designer.cs">
       <DependentUpon>CreditsUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameOverUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameOverUI.Designer.cs">
+      <DependentUpon>GameOverUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="HighScoresUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     <Compile Include="Trivia\TriviaManager.cs" />
     <EmbeddedResource Include="CreditsUI.resx">
       <DependentUpon>CreditsUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameOverUI.resx">
+      <DependentUpon>GameOverUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameUI.resx">
       <DependentUpon>GameUI.cs</DependentUpon>
