@@ -14,9 +14,9 @@ namespace HighScoreUnitTest
 
             DateTime dt = DateTime.Now;
 
-            highscoreManager.Add("testName", 100, "1", dt);
+            highscoreManager.Add("testName", 100, "1", dt, 0, 0, 0, true);
 
-            HighScore highscore = new HighScore("testName", 100, "1", dt);
+            HighScore highscore = new HighScore("testName", 100, "1", dt, 0, 0, 0, true);
             var getHighScore = highscoreManager.GetHighScore("testName");
 
             Assert.AreEqual(highscore,getHighScore);
@@ -30,8 +30,8 @@ namespace HighScoreUnitTest
             // - Mr Fernandez
 
             HighScoreManager highscoreManager = new HighScoreManager();
-            highscoreManager.Add("A", 1, "1", DateTime.Now);
-            highscoreManager.Add("B", 2, "2", DateTime.Now);
+            highscoreManager.Add("A", 1, "1", DateTime.Now, 0, 0, 0, true);
+            highscoreManager.Add("B", 2, "2", DateTime.Now, 0, 0, 0, true);
 
             Assert.IsFalse(highscoreManager.GetHighScores()[0] == highscoreManager.GetHighScores()[1]);
         }
@@ -40,11 +40,11 @@ namespace HighScoreUnitTest
         {
             HighScoreManager highScoreManager = new HighScoreManager();
             DateTime dt = DateTime.Now;
-            highScoreManager.Add("A", 85, "1", dt);
+            highScoreManager.Add("A", 85, "1", dt, 0, 0, 0, true);
 
-            highScoreManager.Add("A", 65, "1", dt);
+            highScoreManager.Add("A", 65, "1", dt, 0, 0, 0, true);
 
-            highScoreManager.Add("A", 75, "1", dt);
+            highScoreManager.Add("A", 75, "1", dt, 0, 0, 0, true);
 
             highScoreManager.Sort();
 
@@ -55,11 +55,11 @@ namespace HighScoreUnitTest
         {
             HighScoreManager highScoreManager = new HighScoreManager();
             DateTime dt = DateTime.Now;
-            highScoreManager.Add("A", 81, "1", dt);
+            highScoreManager.Add("A", 81, "1", dt, 0, 0, 0, true);
 
-            highScoreManager.Add("A", 62, "1", dt);
+            highScoreManager.Add("A", 62, "1", dt, 0, 0, 0, true);
 
-            highScoreManager.Add("A", 73, "1", dt);
+            highScoreManager.Add("A", 73, "1", dt, 0, 0, 0, true);
 
             highScoreManager.Sort();
 
@@ -70,11 +70,11 @@ namespace HighScoreUnitTest
         {
             HighScoreManager highScoreManager = new HighScoreManager();
             DateTime dt = DateTime.Now;
-            highScoreManager.Add("A", 85, "1", dt);
+            highScoreManager.Add("A", 85, "1", dt, 1, 2, 3, true);
 
-            highScoreManager.Add("A", 65, "1", dt);
+            highScoreManager.Add("A", 65, "1", dt, 4, 5, 6, true);
 
-            highScoreManager.Add("A", 75, "1", dt);
+            highScoreManager.Add("A", 75, "1", dt, 7, 8, 9, true);
             highScoreManager.SaveToFile();
 
             var getFromFile = highScoreManager.GetFromFile();
@@ -86,11 +86,11 @@ namespace HighScoreUnitTest
         {
             HighScoreManager highScoreManager = new HighScoreManager();
             DateTime dt = DateTime.Now;
-            highScoreManager.Add("A", 82, "1", dt);
+            highScoreManager.Add("A", 82, "1", dt, 10, 11, 12, true);
 
-            highScoreManager.Add("A", 67, "1", dt);
+            highScoreManager.Add("A", 67, "1", dt, 13, 14, 15, true);
 
-            highScoreManager.Add("A", 79, "1", dt);
+            highScoreManager.Add("A", 79, "1", dt, 16, 17, 18, true);
             highScoreManager.SaveToFile();
 
             var getFromFile = highScoreManager.GetFromFile();
@@ -100,12 +100,27 @@ namespace HighScoreUnitTest
         [TestMethod]
         public void GetFromFileCorrect()
         {
+            HighScoreManager highscoreManager = new HighScoreManager();
+            DateTime dt = DateTime.Now;
+            highscoreManager.Add("A", 85, "1", dt, 1, 2, 3, true);
+            highscoreManager.SaveToFile();
+            var getFromFile = highscoreManager.GetFromFile();
+
+            Assert.IsTrue(getFromFile == highscoreManager.HighScores);
+
+
 
         }
         [TestMethod]
         public void GetFromFileNotCorrect()
         {
+            HighScoreManager highscoreManager = new HighScoreManager();
+            DateTime dt = DateTime.Now;
+            highscoreManager.Add("A", 85, "1", dt, 1, 2, 3, true);
+            highscoreManager.SaveToFile();
+            var getFromFile = highscoreManager.GetFromFile();
 
+            Assert.IsFalse(getFromFile != highscoreManager.HighScores);
         }
         [TestMethod]
         public void GetHighScoreCorrect()
@@ -114,9 +129,9 @@ namespace HighScoreUnitTest
 
             DateTime dt = DateTime.Now;
 
-            highscoreManager.Add("testName", 100, "1", dt);
+            highscoreManager.Add("testName", 100, "1", dt, 0, 0, 0, true);
 
-            HighScore highscore = new HighScore("testName", 100, "1", dt);
+            HighScore highscore = new HighScore("testName", 100, "1", dt, 0, 0, 0, true);
             var getHighScore = highscoreManager.GetHighScore("testName");
 
             Assert.AreEqual(highscore, getHighScore);
@@ -125,8 +140,8 @@ namespace HighScoreUnitTest
         public void GetHighScoreNotCorrect()
         {
             HighScoreManager highscoreManager = new HighScoreManager();
-            highscoreManager.Add("A", 1, "1", DateTime.Now);
-            highscoreManager.Add("B", 2, "2", DateTime.Now);
+            highscoreManager.Add("A", 1, "1", DateTime.Now, 0, 0, 0, true);
+            highscoreManager.Add("B", 2, "2", DateTime.Now, 0, 0, 0, true);
 
             Assert.IsFalse(highscoreManager.GetHighScores()[0] == highscoreManager.GetHighScores()[1]);
         }
@@ -138,9 +153,9 @@ namespace HighScoreUnitTest
 
             DateTime dt = DateTime.Now;
 
-            highscoreManager.Add("testName", 100, "1", dt);
+            highscoreManager.Add("testName", 100, "1", dt, 0, 0, 0, true);
 
-            HighScore highscore = new HighScore("testName", 100, "1", dt);
+            HighScore highscore = new HighScore("testName", 100, "1", dt, 0, 0, 0, true);
             var getHighScore = highscoreManager.GetHighScore("testName");
 
             Assert.AreEqual(highscore, getHighScore);
@@ -149,8 +164,8 @@ namespace HighScoreUnitTest
         public void GetHighScoresNotCorrect()
         {
             HighScoreManager highscoreManager = new HighScoreManager();
-            highscoreManager.Add("B", 2, "2", DateTime.Now);
-            highscoreManager.Add("C", 3, "3", DateTime.Now);
+            highscoreManager.Add("B", 2, "2", DateTime.Now, 0, 0, 0, true);
+            highscoreManager.Add("C", 3, "3", DateTime.Now, 0, 0, 0, true);
 
             Assert.IsFalse(highscoreManager.GetHighScores()[0] == highscoreManager.GetHighScores()[1]);
         }
