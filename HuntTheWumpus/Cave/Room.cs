@@ -50,7 +50,7 @@ namespace HuntTheWumpus.Cave
             Room[] output = new Room[6];
             if (RoomNumber % 2 == 0)
             {
-                output = new Room[] { tunnels[0], tunnels[2], tunnels[5], tunnels[4], tunnels[3], tunnels[1] };
+                output = new Room[] { tunnels[1], tunnels[2], tunnels[5], tunnels[4], tunnels[3], tunnels[0] };
             }
             else
             {
