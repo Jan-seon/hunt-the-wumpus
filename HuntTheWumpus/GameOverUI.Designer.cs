@@ -32,6 +32,8 @@ namespace HuntTheWumpus
             this.labelOutcome = new System.Windows.Forms.Label();
             this.labelScore = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // labelOutcome
@@ -64,11 +66,31 @@ namespace HuntTheWumpus
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(83, 183);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(240, 32);
+            this.labelName.TabIndex = 3;
+            this.labelName.Text = "Enter Your Name:";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxName.Location = new System.Drawing.Point(329, 180);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(320, 38);
+            this.textBoxName.TabIndex = 4;
+            // 
             // GameOverUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 403);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.labelOutcome);
@@ -76,6 +98,7 @@ namespace HuntTheWumpus
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameOverUI";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -84,5 +107,7 @@ namespace HuntTheWumpus
         private System.Windows.Forms.Label labelOutcome;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.TextBox textBoxName;
     }
 }

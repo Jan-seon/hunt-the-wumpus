@@ -13,7 +13,6 @@ namespace HuntTheWumpus
     public partial class GameUI : Form
     {
         private GameLocations.GameLocations gameLocations = new GameLocations.GameLocations();
-        private HighScore.HighScoreManager highScoreManager = new HighScore.HighScoreManager();
         private Player.Player player = new Player.Player();
         private Trivia.TriviaManager triviaManager = new Trivia.TriviaManager();
 
@@ -53,16 +52,6 @@ namespace HuntTheWumpus
                 encounterBat();
                 encounterPit();
                 encounterWumpus();
-
-                // Check for warnings
-                List<string> warnings = gameLocations.GiveWarning();
-
-                // Display the warnings.
-                richTextBoxWarnings.Text = "";
-                foreach(string warning in warnings)
-                {
-                    richTextBoxWarnings.Text = $"{richTextBoxWarnings.Text}{warning}\n";
-                }
             }
         }
 
@@ -305,10 +294,38 @@ namespace HuntTheWumpus
             labelArrows.Text = player.Arrows.ToString();
             labelScore.Text = player.CalculateScore(false).ToString();
 
+            // Check if the player has enough arrows to shoot.
+            if (player.Arrows >= 1)
+                buttonShootArrow.Enabled = true;
+            else
+                buttonShootArrow.Enabled = false;
+
+            // Check if the player has enough gold.
+            if (player.Coins >= 1)
+            {
+                buttonPurchaseArrows.Enabled = true;
+                buttonPurchaseSecret.Enabled = true;
+            }
+            else
+            {
+                buttonPurchaseArrows.Enabled = false;
+                buttonPurchaseSecret.Enabled = false;
+            }
+
             // If their is a message, remove it.
             if (labelMessage.Text != "")
             {
                 labelMessage.Text = "";
+            }
+
+            // Check for warnings
+            List<string> warnings = gameLocations.GiveWarning();
+
+            // Display the warnings.
+            richTextBoxWarnings.Text = "";
+            foreach (string warning in warnings)
+            {
+                richTextBoxWarnings.Text = $"{richTextBoxWarnings.Text}{warning}\n";
             }
 
             // Get the room object of the player.
@@ -348,11 +365,12 @@ namespace HuntTheWumpus
 
         private void endGame(bool isVictorious)
         {
+            // Calculate the score.
             int score = player.CalculateScore(isVictorious);
 
+            // Open the game over UI.
             this.Hide();
-
-            var gameOverUI = new GameOverUI(isVictorious, score);
+            var gameOverUI = new GameOverUI(isVictorious, score, player.Turns, player.Coins, player.Arrows);
             gameOverUI.Closed += (s, args) => this.Close();
             gameOverUI.Show();
         }

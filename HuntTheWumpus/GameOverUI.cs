@@ -14,13 +14,21 @@ namespace HuntTheWumpus
     {
         public bool IsVictorious { get; set; }
         public int Score { get; set; }
+        public int Turns { get; set; }
+        public int Gold { get; set; }
+        public int Arrows { get; set; }
 
-        public GameOverUI(bool isVict, int score)
+        private HighScore.HighScoreManager highScoreManager = new HighScore.HighScoreManager();
+
+        public GameOverUI(bool isVict, int score, int turns, int gold, int arrows)
         {
             InitializeComponent();
 
             IsVictorious = isVict;
             Score = score;
+            Turns = turns;
+            Gold = gold;
+            Arrows = arrows;
 
             labelOutcome.Text = $"You {(isVict ? "win" : "lose")}!";
             labelScore.Text = $"Score: {score}";
@@ -28,8 +36,10 @@ namespace HuntTheWumpus
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            highScoreManager.Add(textBoxName.Text, Score, "N/A", DateTime.Now, Turns, Gold, Arrows, IsVictorious);
+            highScoreManager.SaveToFile();
 
+            this.Hide();
             var homeScreen = new HomeScreen();
             homeScreen.FormClosed += (s, args) => this.Close();
             homeScreen.Show();
