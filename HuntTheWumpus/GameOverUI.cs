@@ -36,6 +36,7 @@ namespace HuntTheWumpus
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
+            highScoreManager.GetFromFile();
             highScoreManager.Add(textBoxName.Text, Score, "N/A", DateTime.Now, Turns, Gold, Arrows, IsVictorious);
             highScoreManager.SaveToFile();
 

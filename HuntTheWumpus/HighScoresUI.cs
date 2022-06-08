@@ -22,7 +22,7 @@ namespace HuntTheWumpus
             highScoreManager.GetFromFile();
             foreach (HighScore.HighScore score in highScoreManager.GetHighScores())
             {
-                richTextBoxHighScores.Text = richTextBoxHighScores.Text + $"{score.score}\t\t{score.name}";
+                richTextBoxHighScores.Text = richTextBoxHighScores.Text + $"{score.score}\t\t{score.name}\n";
             }
         }
 
