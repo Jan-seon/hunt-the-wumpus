@@ -18,6 +18,12 @@ namespace HuntTheWumpus
         public HighScoresUI()
         {
             InitializeComponent();
+
+            highScoreManager.GetFromFile();
+            foreach (HighScore.HighScore score in highScoreManager.GetHighScores())
+            {
+                richTextBoxHighScores.Text = richTextBoxHighScores.Text + $"{score.score}\t\t{score.name}\n";
+            }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

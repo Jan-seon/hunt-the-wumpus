@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HighScoreUnitTest", "HighSc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaUnitTest", "TriviaUnitTest\TriviaUnitTest.csproj", "{BE2CA8CF-1D28-40D2-90A0-DD9871686768}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerUnitTest", "..\PlayerUnitTest\PlayerUnitTest.csproj", "{B96A3C7C-AF53-4069-9B10-BF7052B967EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BE2CA8CF-1D28-40D2-90A0-DD9871686768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE2CA8CF-1D28-40D2-90A0-DD9871686768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE2CA8CF-1D28-40D2-90A0-DD9871686768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96A3C7C-AF53-4069-9B10-BF7052B967EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96A3C7C-AF53-4069-9B10-BF7052B967EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96A3C7C-AF53-4069-9B10-BF7052B967EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96A3C7C-AF53-4069-9B10-BF7052B967EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,20 +38,19 @@ namespace HuntTheWumpus
             // 
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(232, 41);
-            this.labelTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTitle.Location = new System.Drawing.Point(309, 50);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(297, 55);
+            this.labelTitle.Size = new System.Drawing.Size(365, 69);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "High Scores";
             // 
             // buttonBack
             // 
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(38, 41);
-            this.buttonBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonBack.Location = new System.Drawing.Point(51, 50);
+            this.buttonBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(75, 28);
+            this.buttonBack.Size = new System.Drawing.Size(100, 34);
             this.buttonBack.TabIndex = 1;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -59,23 +58,24 @@ namespace HuntTheWumpus
             // 
             // richTextBoxHighScores
             // 
-            this.richTextBoxHighScores.Location = new System.Drawing.Point(31, 122);
-            this.richTextBoxHighScores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBoxHighScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxHighScores.Location = new System.Drawing.Point(41, 150);
+            this.richTextBoxHighScores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxHighScores.Name = "richTextBoxHighScores";
             this.richTextBoxHighScores.ReadOnly = true;
-            this.richTextBoxHighScores.Size = new System.Drawing.Size(676, 407);
+            this.richTextBoxHighScores.Size = new System.Drawing.Size(900, 500);
             this.richTextBoxHighScores.TabIndex = 2;
             this.richTextBoxHighScores.Text = "";
             // 
             // HighScoresUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 571);
+            this.ClientSize = new System.Drawing.Size(981, 703);
             this.Controls.Add(this.richTextBoxHighScores);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.labelTitle);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "HighScoresUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hunt the Wumpus";

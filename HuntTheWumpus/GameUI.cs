@@ -13,7 +13,6 @@ namespace HuntTheWumpus
     public partial class GameUI : Form
     {
         private GameLocations.GameLocations gameLocations = new GameLocations.GameLocations();
-        private HighScore.HighScoreManager highScoreManager = new HighScore.HighScoreManager();
         private Player.Player player = new Player.Player();
         private Trivia.TriviaManager triviaManager = new Trivia.TriviaManager();
 
@@ -52,16 +51,7 @@ namespace HuntTheWumpus
                 // Check if player encounters a hazard.
                 encounterBat();
                 encounterPit();
-
-                // Check for warnings
-                List<string> warnings = gameLocations.GiveWarning();
-
-                // Display the warnings.
-                richTextBoxWarnings.Text = "";
-                foreach(string warning in warnings)
-                {
-                    richTextBoxWarnings.Text = $"{richTextBoxWarnings.Text}{warning}\n";
-                }
+                encounterWumpus();
             }
         }
 
@@ -90,6 +80,50 @@ namespace HuntTheWumpus
             {
                 // Notify the player.
                 labelMessage.Text = "You missed.";
+
+                // Generate a new wumpus location.
+                gameLocations.RandomWumpus();
+            }
+        }
+
+        private void encounterWumpus()
+        {
+            // Retrieve the locations.
+            Cave.Room playerRoom = gameLocations.GetRoom(gameLocations.PlayerLocation);
+            Cave.Room wumpusRoom = gameLocations.GetRoom(gameLocations.WumpusLocation);
+
+            // If the player is in the same room...
+            if (playerRoom.RoomNumber == wumpusRoom.RoomNumber)
+            {
+                // Retrieve five random questions.
+                List<Trivia.Question> questions = triviaManager.GetRandomQuestion(5);
+
+                // Create a new trivia UI.
+                TriviaUI triviaUI = new TriviaUI(questions);
+                triviaUI.ShowDialog();
+
+                // If the user answers at least two questions correctly...
+                if (triviaUI.CorrectAnswers >= 3)
+                {
+                    // Change the wumpus location.
+                    gameLocations.RandomWumpus();
+
+                    // Update the UI.
+                    updateUI();
+
+                    // Notify the user.
+                    labelMessage.Text = "The wumpus ran away.";
+                }
+
+                // If the user fails trivia...
+                else
+                {
+                    // End the game.
+                    endGame(false);
+                }
+
+                // Close the trivia objects.
+                triviaUI.Close();
             }
         }
 
@@ -105,6 +139,9 @@ namespace HuntTheWumpus
             {
                 // Change the player's locations.
                 gameLocations.RandomPlayer();
+
+                // Change the bat locations.
+                gameLocations.RandomBat();
 
                 // Update the UI.
                 updateUI();
@@ -136,6 +173,9 @@ namespace HuntTheWumpus
                 {
                     // Move the player back to room 1.
                     gameLocations.PlayerLocation = 1;
+
+                    // Change the pit locations.
+                    gameLocations.RandomPit();
 
                     // Update the UI.
                     updateUI();
@@ -254,10 +294,38 @@ namespace HuntTheWumpus
             labelArrows.Text = player.Arrows.ToString();
             labelScore.Text = player.CalculateScore(false).ToString();
 
+            // Check if the player has enough arrows to shoot.
+            if (player.Arrows >= 1)
+                buttonShootArrow.Enabled = true;
+            else
+                buttonShootArrow.Enabled = false;
+
+            // Check if the player has enough gold.
+            if (player.Coins >= 1)
+            {
+                buttonPurchaseArrows.Enabled = true;
+                buttonPurchaseSecret.Enabled = true;
+            }
+            else
+            {
+                buttonPurchaseArrows.Enabled = false;
+                buttonPurchaseSecret.Enabled = false;
+            }
+
             // If their is a message, remove it.
             if (labelMessage.Text != "")
             {
                 labelMessage.Text = "";
+            }
+
+            // Check for warnings
+            List<string> warnings = gameLocations.GiveWarning();
+
+            // Display the warnings.
+            richTextBoxWarnings.Text = "";
+            foreach (string warning in warnings)
+            {
+                richTextBoxWarnings.Text = $"{richTextBoxWarnings.Text}{warning}\n";
             }
 
             // Get the room object of the player.
@@ -297,7 +365,14 @@ namespace HuntTheWumpus
 
         private void endGame(bool isVictorious)
         {
-            labelMessage.Text = "You win.";
+            // Calculate the score.
+            int score = player.CalculateScore(isVictorious);
+
+            // Open the game over UI.
+            this.Hide();
+            var gameOverUI = new GameOverUI(isVictorious, score, player.Turns, player.Coins, player.Arrows);
+            gameOverUI.Closed += (s, args) => this.Close();
+            gameOverUI.Show();
         }
     }
 }
