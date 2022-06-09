@@ -99,7 +99,7 @@ namespace HuntTheWumpus
                 List<Trivia.Question> questions = triviaManager.GetRandomQuestion(5);
 
                 // Create a new trivia UI.
-                TriviaUI triviaUI = new TriviaUI(questions);
+                TriviaUI triviaUI = new TriviaUI(questions, "You encountered a wumpus.");
                 triviaUI.ShowDialog();
 
                 // If the user answers at least two questions correctly...
@@ -165,7 +165,7 @@ namespace HuntTheWumpus
                 List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
                 // Create a new trivia UI.
-                TriviaUI triviaUI = new TriviaUI(questions);
+                TriviaUI triviaUI = new TriviaUI(questions, "You encountered a pit.");
                 triviaUI.ShowDialog();
 
                 // If the user answers at least two questions correctly...
@@ -215,7 +215,7 @@ namespace HuntTheWumpus
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
             // Create a new trivia UI.
-            TriviaUI triviaUI = new TriviaUI(questions);
+            TriviaUI triviaUI = new TriviaUI(questions, "You are purchasing arrows.");
             triviaUI.ShowDialog();
 
             // If the user answers at least two questions correctly...
@@ -248,7 +248,7 @@ namespace HuntTheWumpus
             List<Trivia.Question> questions = triviaManager.GetRandomQuestion(3);
 
             // Create a new trivia UI.
-            TriviaUI triviaUI = new TriviaUI(questions);
+            TriviaUI triviaUI = new TriviaUI(questions, "You are purchasing a secret.");
             triviaUI.ShowDialog();
 
             // If the user answers at least two questions correctly...

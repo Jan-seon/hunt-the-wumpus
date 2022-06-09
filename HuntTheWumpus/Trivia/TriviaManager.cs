@@ -40,10 +40,11 @@ namespace HuntTheWumpus.Trivia
         public List<Trivia.Question> GetRandomQuestion(int num)
         {
             List<Trivia.Question> qList = new List<Trivia.Question>();
+            Random rnd = new Random();
 
             for (int i = 0; i < num; i++)
             {
-                Random rnd = new Random();
+                
                 int qNum = rnd.Next(0, (Questions.Count - 1));
 
                 qList.Add(Questions[qNum]);
