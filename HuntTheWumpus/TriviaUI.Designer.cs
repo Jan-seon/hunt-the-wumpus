@@ -105,6 +105,7 @@ namespace HuntTheWumpus
             // labelReason
             // 
             this.labelReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelReason.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.labelReason.Location = new System.Drawing.Point(12, 9);
             this.labelReason.Name = "labelReason";
             this.labelReason.Size = new System.Drawing.Size(708, 43);
