@@ -1,5 +1,18 @@
-﻿question, right, wrong, incorrect, no, right
-question2, wrong, right, incorrect, no, right
-question3, wrong, incorrect, right, no, right
-question4, wrong, incorrect, no, right, right
-question5, idk, lol, fdswe, !!!, lol
+﻿What country has the record for the world’s largest mango?, Colombia, India, Mexico, Philippines, Colombia
+How many national parks does Colombia have?, 0, 4, 60, 18, 60
+What is the national flower of Colombia?, Begonia (Tuberosa group), Christmas Orchid (Cattleya trianae orchid), Lobster-Claws (Heliconia), Playa Blanca Rose, Christmas Orchid (Cattleya trianae orchid)
+What is the biggest city in Colombia?, Valledupar, Quibdo, Yopal, Buenaventura, Buenaventura
+Who was the 23rd US president?, Theodore Roosevelt, Calvin Coolidge, Zachary Taylor, Benjamin Harrison, Benjamin Harrison
+What is the Roman variation of the Greek god Hermes?, Mercury, Minerva, Jupiter, Hephaestus, Mercury
+What Disney Movie came out in 1994?, Hercules, The Lion King, The Little Mermaid, Cars, The Lion King
+What states that F=ma?, Newton’s first law of motion, Newton’s second law of motion, Newton’s third law of motion, Newton’s fourth law of motion, Newton’s second law of motion
+What was the last state admitted into the United States?, Arizona, Hawaii, Alaska, New Mexico, Hawaii
+Which boxer was known as “The Greatest” and “The People’s Champion”?, Mike Tyson, Muhammad Ali, Floyd Mayweather, Apollo Creed, Muhammad Ali
+What color is the hex code #FFFF00?, Yellow, Purple, Orange, Aqua, Yellow
+What is the national animal of Italy?, Lion, Pigeon, Eagle, Wolf, Wolf
+What is the capital city of India?, Islamabad, New Delhi, Mumbai, Bangalore, New Delhi
+How tall was the tallest man ever recorded?, 9 Foot 2 Inches, 8 Foot 11 Inches, 8 Foot 4 Inches, 8 Foot 9 Inches, 8 Foot 11 Inches
+How old was the oldest person ever recorded?, 125 years old, 116 years old, 122 years old, 118 years old, 122 years old
+Who is an Argentine equestrian that competed in two events at the 1984 Summer Olympics?, Hidalgo Jones, Eduardo Zone, Ronaldo Rodriguez, Raul Clark, Eduardo Zone
+
+
