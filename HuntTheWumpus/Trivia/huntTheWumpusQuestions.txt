@@ -14,5 +14,3 @@ What is the capital city of India?, Islamabad, New Delhi, Mumbai, Bangalore, New
 How tall was the tallest man ever recorded?, 9 Foot 2 Inches, 8 Foot 11 Inches, 8 Foot 4 Inches, 8 Foot 9 Inches, 8 Foot 11 Inches
 How old was the oldest person ever recorded?, 125 years old, 116 years old, 122 years old, 118 years old, 122 years old
 Who is an Argentine equestrian that competed in two events at the 1984 Summer Olympics?, Hidalgo Jones, Eduardo Zone, Ronaldo Rodriguez, Raul Clark, Eduardo Zone
-
-
