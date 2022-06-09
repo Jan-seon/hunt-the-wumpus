@@ -19,7 +19,7 @@ namespace HuntTheWumpus
 
         public int CorrectAnswers { get; set; }
 
-        public TriviaUI(List<Trivia.Question> questionList)
+        public TriviaUI(List<Trivia.Question> questionList, string reason)
         {
             InitializeComponent();
 
@@ -28,6 +28,9 @@ namespace HuntTheWumpus
             this.currentQuestion = questionList[0];
             this.currentNumber = 0;
             this.totalQuestions = questionList.Count();
+
+            // Set the reason.
+            labelReason.Text = reason;
 
             // Update the UI.
             updateUI();
