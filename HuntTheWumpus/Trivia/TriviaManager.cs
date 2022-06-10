@@ -37,7 +37,6 @@ namespace HuntTheWumpus.Trivia
             }
         }
 
-        static int lastVal;
         public List<Trivia.Question> GetRandomQuestion(int num)
         {
             List<Trivia.Question> qList = new List<Trivia.Question>();
@@ -46,11 +45,10 @@ namespace HuntTheWumpus.Trivia
             for (int i = 0; i < num; i++)
             {
                 int qNum = rnd.Next(0, (Questions.Count - 1));
-                while (lastVal == qNum)
+                while (qList.Contains(Questions[qNum]))
                 {
                     qNum = rnd.Next(0, (Questions.Count - 1));
                 }
-                lastVal = qNum;
 
                 qList.Add(Questions[qNum]);
             }
